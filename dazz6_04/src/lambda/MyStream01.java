@@ -41,7 +41,7 @@ public class MyStream01 {
 		istream.forEach((para) -> {
 			System.out.print(para + " ");
 		});
-
+		
 		System.out.println("\n----- Test 02 -----");
 	}
 
