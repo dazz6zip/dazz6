@@ -41,8 +41,29 @@ public class DebugTest01 extends JFrame implements ActionListener {
 //		// 변수 값 확인 3 : 임의의 컴포넌트로 출력
 //		txtA.setText("합 : " + String.valueOf(tot));
 		
-		// 변수 값 확인 4 : 디버깅 도구 사용
+		// 변수 값 확인 4 : 디버깅 도구 사용 - 확인할 때 원하는 지점에 중단점 표시
+		for (int i = 0; i < 5; i++) {
+			cou++;
+			System.out.println(cou);
+			tot += cou;
+		}
+		System.out.println("tot : " + tot);
 		
+		aa();
+		
+		System.out.println("Bye");
+	}
+	
+	private void aa() {
+		System.out.println("aa 메소드 수행");
+		for (int j = 0; j < 3; j++) {
+			bb();
+			System.out.println("aa 메소드 for문 실행");
+		}
+	}
+	
+	private void bb() {
+		System.out.println("bb 메소드 수행");
 	}
 
 	public static void main(String[] args) {
