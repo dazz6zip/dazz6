@@ -1,8 +1,10 @@
 package pack;
 
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 //import java.net.InetAddress;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class Net04TestClient {
 
@@ -12,9 +14,11 @@ public class Net04TestClient {
 //			InetAddress ia = InetAddress.getByName("127.0.0.1");
 //			System.out.println(ia);
 //			Socket socket = new Socket(ia, 9999);
-			Socket socket = new Socket("127.0.0.1", 9999); // 서버 접속
-			PrintWriter writer = new PrintWriter(socket.getOutputStream(), true); 
-			writer.println("Hi I am dazz6" + "\n"); // 127.0.0.1로 출력
+			Socket socket = new Socket("192.168.0.15", 9999); // 서버 접속
+			
+			PrintWriter writer = new PrintWriter(
+					new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true);
+			writer.println("메렁" + "\n");
 			writer.close();
 			socket.close();
 		} catch (Exception e) {

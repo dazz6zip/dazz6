@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class Net04TestServer {
 
@@ -22,14 +23,15 @@ public class Net04TestServer {
 //		}
 //		System.out.println("확인 종료");
 
-		Socket socket = null; // TCP 기반의 통신용 클래스(파일) 
+		Socket socket = null; // TCP 기반의 통신용 클래스(파일)
 		try {
 			ss = new ServerSocket(9999); // 서버 소켓
 			System.out.println("서버 서비스 중...");
 			socket = ss.accept(); // 서버 소켓으로부터 클라이언트 컴과 통신하기 위한 개별 소켓 생성
 			// 클라이언트가 서버에 접속할 때까지 소켓은 무한 대기
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 			String data = reader.readLine();
 			System.out.println("수신 자료 : " + data);
 
