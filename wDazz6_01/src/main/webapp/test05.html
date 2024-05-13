@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test05</title>
+</head>
+<body>
+<h2>~ 게시판 글쓰기 ~</h2>
+<form action="border.jsp" name="frm" method="get">
+<!-- a 태그는 전부 get, form은 post로 변경 가능
+주로 대용량이나 보안을 목적으로 post 사용 
+명시적으로 post임을 지정해 주지 않으면 get이 기본-->
+<table border="1">
+	<tr>
+		<td align="center">이름</td>
+		<td><input type="text" name="writer"></input></td>
+	</tr>
+	<tr>
+		<td align="center">제목</td>
+		<td><input type="text" name="subject" placeholder="제목 입력"></input></td>
+	</tr>
+	<tr>
+		<td align="center">나이</td>
+		<td><input type="number" name="age" value="20"></input></td>
+	</tr>
+	<tr>
+		<td align="center">이메일</td>
+		<td><input type="email" name="email"></input></td>
+	</tr>
+	<tr>
+		<td align="center">내용</td> <!-- textarea 는 사이에 공백 없이 붙여서 닫아 주기 -->
+		<td><textarea rows="10" cols="50" name="content"></textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" value="등록">
+			<input type="reset" value="취소">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test03</title>
+</head>
+<body>
+	TABLE 태그 연습
+	<!-- thead와 tbody는 필수가 아님, th와 td는 종속되어 사용  -->
+	<br />
+	<table border="1">
+		<thead>
+			<tr>
+				<th>제목1</th>
+				<th>제목2</th>
+				<th>제목3</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>내용1</td>
+				<td>내용2</td>
+				<td>내용3</td>
+			</tr>
+			<tr>
+				<td>내용4</td>
+				<td>내용5</td>
+				<td>&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<table border="2" bgcolor="yellow"
+		style="background-image: url('images/pic2.jpeg')">
+		<caption>상품자료</caption>
+		<tr bgcolor="red">
+			<td bgcolor="silver"><b>상품명</b></td>
+			<td><b>수량</b></td>
+			<td><b>단가</b></td>
+		</tr>
+		<tr>
+			<td>컴퓨터</td>
+			<td align="center">2</td>
+			<td><img src="images/pic.png" width="100"></td>
+		</tr>
+		<tr>
+			<td>a</td>
+			<td>
+				<table border="3">
+					<tr>
+						<td><a href="https://www.naver.com">가</a></td>
+						<td>나</td>
+					</tr>
+				</table>
+			</td>
+			<td>c</td>
+		</tr>
+	</table>
+	<br />
+	<!-- 행 병합 row span, 열 병합 col span -->
+	<table border="1" width="200">
+		<tr align="center">
+			<td colspan="2">a</td>
+			<td>b</td>
+			<td rowspan="2">c</td>
+		</tr>
+		<tr align="center">
+			<td>d</td>
+			<td>e</td>
+			<td>f</td>
+		</tr>
+	</table>
+	<br />
+	<table border="1" width="200">
+		<tr align="center">
+			<td rowspan="2">1</td>
+			<td colspan="2">2</td>
+			<td rowspan="2">3</td>
+		</tr>
+		<tr align="center">
+			<td colspan="2">4</td>
+		</tr>
+		<tr align="center">
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td rowspan="2">8</td>
+		</tr>
+		<tr align="center">
+			<td>9</td>
+			<td colspan="2">10</td>
+		</tr>
+	</table>
+	<hr />
+	한 화면에서 여러 개의 html 문서를 보고자 할 경우 iframe 사용
+	<br />
+	<iframe src="test01.html" name="star" width="99%" height="300"></iframe>
+	<br />
+	<a href="test02.html" target="star">test02</a>
+	<hr />
+	이미지 맵 : 이미지를 여러 영역으로 지정하여 각 영역마다 link를 걸 수 있음
+	<br />
+	<img src="images/pic.png" width="400" usemap="#purin">
+	<map name="purin">
+		<area shape="rect" coords="0, 0, 50, 50" href="http://www.naver.com">
+		<area shape="rect" coords="50, 100, 100, 200" href="http://www.w3.org">
+	</map>
+	<pre>
+	
+	
+	
+	
+	
+	</pre>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="홍길동">
+<meta name="subject/title" content="연습용 홈페이지">
+<meta name="date" content="2024-05-13">
+<!-- 검색 로봇에 의해 검색당할 자료를 적음 -->
+<meta name="keyword" content="html 정보 설명">
+<meta name="discription" content="홈페이지 작성 정보">
+<!-- 
+3초 뒤에 test01로 넘어가게 하는 meta 구문 
+<meta http-equiv="refresh" content="3; url='test01.html'">
+-->
+<title>Test04</title>
+</head>
+<body>
+	form tag : 사용자와 정보를 소통할 수 있는(상호작용) 태그
+	<hr />
+	<h2>개인정보 입력</h2>
+	<form action="#" name="frm" method="get">
+	1. 이름 : <input type="text" id="ir" name="irum" size="10" maxlength="10" value="tom"><br />
+	2. 아이디 : <input type="text" name="id"><br />
+	3. 비밀번호 : <input type="password" name="pwd" value="123"><br />
+	4. 프로필 사진 : <input type="file" name="fname"><br />
+	5. 자기소개 : <textarea rows="5" cols="60" name="my"></textarea><br />
+	6. 성별 : 
+		<input type="radio" name="gender" value="m">남자&nbsp;
+		<input type="radio" name="gender" value="f" checked="checked">여자<br />
+	7. 취미 :
+		<input type="checkbox" name="hobby" value="축구">축구&nbsp;
+		<input type="checkbox" name="hobby" value="야구">야구&nbsp;
+		<input type="checkbox" name="hobby" value="농구">농구<br />
+	 <!-- 
+	 8. 교통수단(multiple) :
+	 	<select name="tr" multiple="multiple">
+	 		<option value="도보">도보</option>
+	 		<option value="버스">버스</option>
+	 		<option value="전철">전철</option>
+	 	</select><br />
+	 -->
+	 8. 교통수단 :
+	 	<select name="trr">
+	 		<option value="도보">도보</option>
+	 		<option value="버스">버스</option>
+	 		<option value="전철">전철</option>
+	 	</select><br />
+	 9. 숨김
+	 	<input type="hidden" name="hello" value="hi"><br /><br />
+	 <input type="submit" value="전송">
+	
+	</form>
+
+</body>
+</html>

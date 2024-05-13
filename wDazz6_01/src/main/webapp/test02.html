@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지와 링크</title>
+</head>
+<body>
+	이미지 출력
+	<br />
+	<img title="그림" src="images/pic.png" width="200">
+	<br />
+	<img
+		src="https://t1.daumcdn.net/daumtop_deco/images/pctop/2023/logo_daum.png">
+	<embed src="images/sample.swf" autostart="true"></embed>
+	<hr />
+	a 태그 : 하이퍼링크 가능
+	<br />
+	<a href="test01.html">test01 문서 </a>보기(기본값 : _self)
+	<br />
+	<a href="http://127.0.0.1:80/wDazz6_01/test01.html">test01 문서 </a>보기(기본값 : _self)
+	<br />
+	<a href="test01.html" target="_self">test01 문서 </a>보기(_self : 현재 프레임덮어쓰기)
+	<br />
+	<a href="test01.html" target="_new">test01 문서 </a>보기(_new : 새로운 프레임 열기)
+	<br />
+	<a href="test01.html" target="_blank">test01 문서 </a>보기(_blank : 새로운 프레임열기)
+	<br />
+	<a href="https://www.naver.com">네이버</a>
+	<br />
+	<a href="https://www.naver.com" target="_new">네이버(_new)</a>
+	<br />
+	<br />
+	<a href="test01.html"> 
+		<img title="그림2" src="images/pic2.jpeg" width="200">
+	</a>
+	<br />
+	<a href="files/book1.xlsx">엑셀 문서</a>(브라우저가 처리할 수 없으므로 다운로드됨)
+	<br />
+	<a href="files/code.txt">텍스트 문서</a>
+	<br />
+	<a href="files/nothing.txt">텍스트 문서</a>(해당 파일이 없으므로 404)
+	<br />
+	<a href="mailto:da-zz6@naver.com">메일 전송</a>
+	<hr />
+	<a href="META-INT/aaa.html">META-INT 파일</a>(외부 접근 불가)<br />
+	<a href="WEB-INT/bbb.html">WEB_INT 파일</a>(외부 접근 불가)<br />
+	<br />
+	<a href="kbs/a.html">kbs 파일</a> <br />
+	<a href="/wDazz6_01/kbs/a.html">kbs 파일</a>(위와 동일)<br />
+	<a href="/kbs/a.html">kbs 파일</a>(경로 오류이므로 404) 경로 시작에 / 의미 : 현재 context의 root<br />
+	<br />
+	<a href="kbs/sbs/b.html">sbs 파일</a> <br />
+	<a href="kbs/sbs/tvn/c.html">tvn 파일</a> <br />
+	<pre>
+	<!-- 경로 관련 참고사항
+	C:\Users\user>cd c:/
+	c:\>cd work
+	c:\work>cd .
+	c:\work>cd ..
+	c:\>cd work
+	c:\work>cd /
+	c:\>
+	-->
+	</pre>
+	
+</body>
+</html>
