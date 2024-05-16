@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript</title>
+</head>
+<body>
+	<h1>자바스크립트 연습</h1>
+	<script type="text/javascript">
+	<!--
+		console.log("test01");
+		document.write("test02");
+		-->
+	</script>
+	<br />
+	<script type="text/javascript">
+		"use strict";
+		var a = 5;
+		let b = 10;
+		const c = a + b;
+		document.write("c: ", c);
+	</script>
+	<br />
+	<script type="text/javascript">
+		document.write("javascript");
+		document.write("<br />변수 선언시 let과", " const 권장");
+
+		document.write("<br />kbs : ", kbs);
+		var kbs = 9; // 전역 선언 global scope, 일부러 호이스팅을 사용하려고 할 때를 제외하고는 var 사용하지 않음
+		// 호이스팅 : 변수와 함수 선언이 맨 위로 이동되는 자바스크립트 매커니즘
+		document.write("<br />kbs : ", kbs);
+
+		{
+			var v1 = 1;
+			{
+				var v2 = 2;
+				{
+					var v3 = 3;
+				}
+			}
+		}
+		document.write("<br />", v1, " ", v2, " ", v3);
+
+		// document.write("<br />mbc : ", mbc);
+		let mbc = 11; // 지역 선언 local scope
+		document.write("<br />mbc : ", mbc);
+		
+		{
+			let w1 = 1;
+			{
+				let w2 = 2;
+				{
+					let w3 = 3;
+				}
+			}
+		}
+		// document.write("<br />", w1, " ", w2, " ", w3); // let은 local이기 때문에 ERROR
+
+		const sbs = 5; // 수정 불가, final(상수)같은 개념
+		document.write("<br />sbs : ", sbs);
+
+		document
+				.write("<br />원시 타입 : Number, String, Boolean, undefined, null, Simbol");
+		document.write("<br />참조 타입 : Object, Array, Function");
+		document.write("<br />type 확인 : ", typeof 1, " ", typeof 1.5, " ",
+				typeof -12, " ", typeof 'kor', " ", typeof true, " ",
+				typeof false, " ", typeof null, " ", typeof undefined);
+
+		let aa = null;
+		let bb = undefined;
+		let cc;
+		document.write("<br>aa : ", aa, ", bb : ", bb, ", cc : ", cc);
+		document.write(`<br />aa : ${aa}, bb : ${bb}, cc : ${cc}`); // back tic 문자 (`) 사용
+		document.write(`<br />${1 + 5 * 2}`);
+	</script>
+	<hr /><b>연산자</b>
+	<script type="text/javascript">
+		let x = 5, y = 2; 
+		document.write("<br/>x : ", x, ", y : ", y);
+		document.write("<br/><br/>1. 산술연산");
+		document.write("<br/>", x + y, ", ", x - y, ", ", x * y);
+		document.write("<br/>", x / y, ", ", x % y);
+		document.write("<br/>", x ** y, ", ", 4 ** (1/2), ", ", 8 ** (1/3));
+		
+		document.write("<br/><br/>2. 관계연산");
+		document.write("<br/>", x > y, ", ", x <= y, ", ", x == y, ", ", x != y);
+		document.write("<br/>", 5 == '5', ", ", 5 === '5', ", ", 5 != '5', ", ", 5 !== '5');
+		// ==, != : 형 변환이 된 이후에 비교, 타입 상관없이 값만 비교함 (js에서 사용 지양)
+		// ===, !== : 값 비교, 타입도 같이 비교함 (js에서 사용 권장)
+		
+		document.write("<br/><br/>3. 논리연산");
+		document.write("<br/>", x > y && 7 > x);
+		document.write("<br/>", x > y || 7 > x);
+		
+		document.write("<br/><br/>4. 삼항연산");
+		document.write("<br/>", (x > y)?100:200);
+		
+		let kor = null;
+		let eng = 90;
+		let result1 = (kor !== null && a != undefined)?kor:eng;
+		document.write(`<br/>result1의 결과는 ${result1}입니다.`);
+		let result2 = kor??eng; // result1 구문과 동일
+		document.write(`<br/>result2의 결과는 ${result2}입니다.`);
+		
+		document.write("<br/><br/>", 10 + 20 * 2, " ", (10 + 20) * 2);
+		// ( ) > 산술 > 관계 > 논리 > 치환
+		
+		document.write("<br/><br/>5. 문자열 더하기 연산");
+		document.write("<br/>", "대한" + "민국" + " ", "5" + "6");
+		document.write("<br/>", "5" + 6, " ", Number('5') + Number('6'), " ", +"5" + 6);
+		// 자동 형 변환과 강제 형 변환 (단항 덧셈 연산자 : '+'를 앞에 붙이면 Number로 강제 형 변환)
+		document.write("<br/>", "1" + 2, " ", 1 + "2", " ", 1 + +"2");
+		document.write("<br/>", 6 - "2", " ", 6 * "2", " ", 6 / "2");
+		document.write("<br/>", "c" + "a" + "t" === "cat");
+		
+		document.write("<br/><br/>", Boolean(true), " ", Boolean(false));
+		document.write("<br/>", Boolean('true'), " ", Boolean('false'));
+		document.write("<br/>", Boolean(123), " ", Boolean(-123.4), " ", Boolean('0'));
+		document.write("<br/>", Boolean('kor'), " ", Boolean('홍길동'), " ", Boolean('5'));
+		document.write("<br/>", Boolean(0), " ", Boolean(false), " ", Boolean(''));
+		document.write("<br/>", Boolean(null), " ", Boolean(undefined), " ", Boolean(NaN));
+		document.write("<br/>", "국어" / 2);
+		
+		document.write("<br/><br/>6. 기타 연산");
+		document.write("<br/>- 할당(치환) 연산자 체이닝");
+		let s1, s2, s3;
+		s1 = s2 = s3 = 3 + 4;
+		document.write(`<br/>s1 : ${s1}, s2 : ${s2}, s3 : ${s3}`);
+		document.write("<br/>- 누적, 전위, 후위");
+		let my = 1;
+		document.write("<br/>", my);
+		my = my + 1;
+		document.write(" ", my);
+		my += 1;
+		document.write(" ", my);
+		my++;
+		document.write(" ", my);
+		++my;
+		document.write(" ", my);
+		document.write("<br/>- 연산 중에 치환 등");
+		let f1 = 1, f2 = 2;
+		document.write("<br/>", 5 - (f1 = f2 + 1), " ", "2" > 1);
+		document.write("<br/>f1 : ", f1);
+	</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배열</title>
+</head>
+<body>
+<h2>배열</h2>
+- 여러 기억장소에 대해 하나의 대표명(배열명)을 부여<br/>- 배열명[첨자] 형태로 각 기억장소를 구분<br/>- 반복 처리가 효과적
+<br/>형식 : 배열명 = new Array();<br/>
+<script type="text/javascript">
+	let aa = new Array();
+	aa[0] = 10;
+	aa[1] = 10.5;
+	aa[3] = '결과';
+	aa[4] = "안녕";
+	aa[5] = true;
+	aa[6] = {kbs:9, sbs:5}; // JSON format
+	
+	document.write("Array type : ", typeof aa, "<hr/>")
+	
+	let i1 = 3; // 첨자 변수로 사용할 목적
+	document.write(`<b>${aa[i1]}</b><br/> aa[0] : ${aa[0]}, aa[1] : ${aa[1]} 전체 크기 : ${aa.length}개`);
+	// length : prototype member field(전역 변수, 애트리뷰트)
+	document.write("<br/>", aa[2]);
+	document.write("<br/>", aa[4], aa[5], aa[6].kbs, aa[6]['sbs'], "<br/>");
+
+	let bb = new Array(100, 200, 300);
+	document.write(`bb[0] : ${bb[0]}, bb[1] : ${bb[1]}, bb[2] : ${bb[2]}, 크기 : ${bb.length}<br/>`);
+	
+	let cc = []; // 비어 있는 배열 선언, 배열 리터럴 (권장 방법)
+	cc[0] = 'tom';
+	cc.push(23); // prototype method
+	cc.push('seoul');
+	cc.push(82, 1234, 5678);
+	// cc[99] = 'wow';
+	for (z = 0; z < cc.length; z++) {
+		document.write(cc[z] + " ");
+	}
+	document.write(`<br/>cc 배열의 크기는 ${cc.length}`);
+	
+	document.write("<hr/><b>반복문 for 활용하여 입출력</b><br/>");
+	let dd = new Array();
+	// 입력
+	for (let m = 0; m < 10; m++) {
+		dd[m] = m + 1;
+	}
+	// 츨력
+	for (let m = 0; m < 10; m++) {
+		document.write(dd[m] + " ");
+	}
+	
+	document.write("<br/>");
+	let animal = ['토끼', '사슴', '침팬치'];
+	for (let ani = 0; ani < animal.length; ani++) {
+		document.write(animal[ani] + " ");	
+	}
+	
+	
+</script>
+</body>
+</html>
+
+
+
+
+

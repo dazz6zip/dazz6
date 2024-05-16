@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>조건 판단문 if</h2>
+<script type="text/javascript">
+const irum = '한국인';
+if(irum === '한국인'){
+	document.write("O");
+} else {
+	document.write("X");
+}
+document.write("<br />");
+
+// let res = +prompt("점수 입력", "80");
+let res = 67;
+let re = res + 5;
+if(re >= 90) {
+	document.write(`점수 : ${re}이므로 <b style = "color:blue">상</b>`);
+} else if (re >= 70) {
+	document.write(`점수 : ${re}이므로 <b style = "color:green">중</b>`);
+} else {
+	document.write(`점수 : ${re}이므로 <i style = "color:red">하</i>`);
+}
+</script>
+<hr/><h2>조건 판단문 switch</h2>
+<script type="text/javascript">
+let hak = "A";
+switch(hak.toLowerCase()) { // toLowerCase() : 소문자화
+case "a":
+case "b":
+case "c":
+	document.write("^0^");
+	break;
+case "d":
+	document.write("^^;");
+	break;
+default: document.write("ㄱ-");
+	}
+</script>
+</body>
+</html>

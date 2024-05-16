@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>반복문 for</h2>
+	<script type="text/javascript">
+		for (let a = 1; a <= 5; a++) {
+			document.write(`a : ${a}<br/>`);
+		}
+		// document.write(`for문을 벗어난 a값은 ${a}`) // a는 지역 변수(let)기 때문에 ERROR
+
+		for (let a = 10; a >= 1; a -= 2) {
+			document.write(`a : ${a}<br/>`);
+		}
+
+		document.write("<br/>");
+
+		for (let a = 1; a <= 3; a++) {
+			document.write(`a : ${a}&nbsp;&nbsp;`);
+			for (let b = 1; b <= 4; b++) {
+				document.write(`b : ${b}&nbsp;&nbsp;`);
+			}
+			document.write("<br/>");
+		}
+
+		document.write("<br/>");
+
+		for (let a = 1; a <= 10; a++) {
+			if (a === 3) {
+				continue;
+			}
+			if (a === 6) {
+				break;
+			}
+			document.write(`a : ${a}&nbsp;&nbsp;`);
+		}
+	</script>
+
+	<hr />
+	<h1>문제</h1>
+	<script type="text/javascript">
+		// 문 1) 1 ~ 100 사이의 정수 중 3의 배수의 합과 갯수 출력
+		let tot = 0, count = 0;
+		for (x = 1; x <= 100; x++) {
+			if (x % 3 === 0) {
+				tot += x;
+				count++;
+			}
+		}
+		document.write(tot, " ", count, "<br/><br/>");
+
+		// 문 2) 1 ~ 1000 사이의 정수 중 2의 배수이나 5의 배수가 아닌 수의 합 출력
+		// 조건 : 숫자가 100을 넘으면 작업 중지 
+		let result = 0;
+		for (x = 1; x <= 1000; x++) {
+			if (x > 101) {
+				break;
+			}
+			if (x % 2 === 0 && x % 5 !== 0) {
+				result += x;
+			}
+		}
+		document.write(result, "<br/><br/>");
+
+		// 문 3)	2 ~ 9단의 구구단 출력
+		// 조건 1 : table tag 사용, border = 1
+		// 조건 2 : 각 단은 행으로 구분
+		// 조건 3 : 짝수단은 노란 배경 (인라인 방식으로 style 적용)
+		document.write("<table border='1'> <tbody>");
+		for (a = 2; a < 10; a++) {
+			document.write("<tr><td>")
+			for (b = 1; b < 10; b++) {
+				if (a % 2 === 0) {
+					document.write(`<span style = "background-color: yellow;">${a} * ${b} = ${(a*b)}&nbsp;&nbsp;</span>`);
+				}
+				if (a % 2 !== 0) {
+					document.write(`<span>${a} * ${b} = ${(a*b)}&nbsp;&nbsp;</span>`);
+				}
+			}
+				document.write("</td></tr>");
+		}
+		document.write("</tbody></table>");
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
