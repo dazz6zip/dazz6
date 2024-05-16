@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Layout</title>
+<style type="text/css">
+body {
+	width: 95%;
+	margin: 0 auto;
+}
+
+h2#title {
+	text-align: center;
+}
+
+ul>li.go_site {
+	float: left;
+	width: 60px;
+	margin: 5px;
+	list-style: none;
+}
+
+li a {
+	display: block;
+}
+
+ul.head {
+	border: solid brown thin;
+	width: 90%;
+	overflow: auto;
+	/*
+	overflow 프로퍼티는 요소 내의 컨텐츠가 너무 커서 요소 내에 모두 보여주기 힘들 때 그것을 어떻게 보여 줄지 지정
+	auto : 컨텐츠 양에 따라 스크롤바를 추가할지 자동으로 결정 
+	*/
+}
+
+nav {
+	float: left;
+	width: 120px;
+}
+
+#contents {
+	float: left;
+	width: 400;
+}
+
+#ad {
+	float: left;
+	width: 400;
+	font-size: 0.8em;
+}
+
+footer {
+	margin-top: 250px;
+	clear: both; /* 플롯 해제 */
+}
+</style>
+</head>
+<body>
+	<h2 id="title">CSS로 화면 레이아웃 연습</h2>
+	<header>
+		<h3>머리글</h3>
+		<ul class="head">
+			<li class="go_site"><a href="https://www.naver.com">네이버</a></li>
+			<li class="go_site"><a href="https://www.korea.com">코리아</a></li>
+			<li class="go_site"><a href="https://www.google.com">구글</a></li>
+		</ul>
+	</header>
+	<nav>
+		<h3>항목 선택</h3>
+		<ul>
+			<li>메인</li>
+			<li>자동차</li>
+			<li>반도체</li>
+			<li>스포츠</li>
+			<li>기타</li>
+		</ul>
+	</nav>
+	<div id="contents">
+		<h3>핫 이슈</h3>
+		<span> 폼폼푸린(독일어: Das Pompompürin)은 1996년에 산리오에서 만들어진 수컷 골든
+			리트리버(강아지) 캐릭터이다. 베레모를 쓰고 있는 것이 인상적이다.생일은 4월16일이다. 좋아하는 말은 외출이고 싫어하는
+			말은 집보기이다. 취미는 주인 엄마아빠의 신발 숨기기이고 좋아하는 것은 엄마가 만들어준 푸딩, 낮잠자기, 푸딩체조이다.
+			가족은 엄마, 아빠, 그리고 폼폼푸린이다. </span>
+	</div>
+	<div id="ad">
+		<h3>광고글</h3>
+		<ul>
+			<li>현대</li>
+			<li>삼성</li>
+			<li>엘지</li>
+		</ul>
+	</div>
+	<footer>
+		<b>바닥글</b>&nbsp;&nbsp; 주로 공지사항 기술
+	</footer>
+
+
+</body>
+</html>

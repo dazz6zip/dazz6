@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<!-- 스타일 적용 -->
+<style type="text/css">
+/* 인터널 방식 */
+h1 {font-size: 40px; font-family: HY견고딕; color: grey;}
+h2 {color: pink;}
+.c1 {color: orange; font-family: 돋움, 명조, 궁서, "Times New Roman";}
+#i1 {color: red; font-style: italic;}
+</style>
+<!-- 익스터널(External) 방식 -->
+<link rel="stylesheet" type="text/css" href="myCSS/ex01.css"></link>
+</head>
+<body>
+<h1>~ CSS 적용하기 ~</h1>
+<span style="font-size: 30px; color: coral;">인라인 방식</span>
+<hr />
+<h2>인터널 방식</h2>
+<h3>안녕하세요</h3>
+<h2><i>반가워요</i></h2>
+<p class="c1">클래스 사용 1 (p)</p>
+<h3 class="c1">클래스 사용 2 (h3)</h3>
+<p id="i1">p 아이디 사용 (중복 불가)</p>
+<hr />
+<h2>익스터널 방식</h2>
+<div id="i2">dix 태그(별도 css 파일 작성 후 적용, i2)</div><br />
+<div id="i3">dix 태그(별도 css 파일 작성 후 적용, i3)</div>
+<hr />
+<p>* 입력 양식 *</p>
+<form>
+<table>
+	<tr>
+		<td>ID : </td>
+		<td><input type="text" name="id" id="id" class="id"></td>
+		<!-- "id" : JS 서버 전송시 변수명으로 사용됨, 뒤 id와 class는 JS를 위해 사용 -->
+		<!-- name은 필수, id와 class는 옵션 -->
+	</tr>
+	<tr>
+		<td>PWD : </td>
+		<td><input type="text" name="pwd" id="id" class="id"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" id="btnOK" class="btnOK" value="전송"></input>
+		</td>
+	</tr>
+</table>
+</form>
+<hr />
+* 셀렉터 *<br />
+<a href="https://www.naver.com">네이버</a><br />
+<a href="https://www.daum.net">다음</a>
+<hr />
+<i>i 태그</i>
+<strong><span>span tag</span></strong>
+<br /><b>셀렉터 : 부모, 자식, 자손 관계</b><br />
+<b>b 태그</b>
+<div><b>div - b 태그</b></div>
+<div><span><b>div - span - b 태그</b></span></div>
+<div><b id="hi">div - b 태그(id : hi)</b></div>
+<div><b class="hello">div - b 태그(class : hello)</b></div>
+<hr />
+<div id="pic">배경으로 이미지 삽입하기</div><br />
+<img title="purin" src="images/pic.png" width="200">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

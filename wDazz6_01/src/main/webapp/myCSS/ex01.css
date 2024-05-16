@@ -1,0 +1,86 @@
+@charset "UTF-8";
+/* 주석 */
+#i2 {
+	background-color: yellow;
+	color: red;
+}
+#i3 {
+	border-radius: 25px;
+	background-color: yellow;
+	color: red;
+	padding: 5px;
+	font-size: 15px;
+}
+
+h2, h3 {
+	text-decoration: line-through;
+}
+
+table {width: 70%; margin-bottom: 10px; border: 1px solid coral;}
+table tr td {
+	padding: 5px 10px; /* 패딩 세로(위, 아래) 5, 패딩 가로(좌, 우) 10 */
+	border-top: 1px dotted rgb(200,50,50);
+	border-bottom: 3px double rgb(200,100,100);
+}
+
+/*
+input {
+	border-radius: 25px;
+	border: 2px solid;
+	padding: 5px;
+	background-color: rgb(90%,80%,30%);
+}
+*/
+
+input.btnOK {
+	border: solid;
+	background-color: rgb(90%,80%,30%);
+}
+
+/* 동적 선택자 (다이나믹 셀렉트) */
+input:focus { /* 엘리먼트에 콜론(:) -> 속성 */
+	background-color: #334455;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	color: red;
+}
+
+a:active {
+	color: yellow;
+	font-family: 궁서;
+}
+
+a:hover {
+	font-size: 30px;
+	cursor: crosshair;
+}
+
+i, strong {
+	color: #cba;
+	background-color: black;
+}
+
+b {	font-size: 8px; }
+div b { font-size: 10px; } /* div의 자손 b */
+div > b { font-size: 14px; } /* div의 자식 b */
+div span b { font-size: 18px; } /* div의 자손 span의 자손 b */
+
+div b#hi{ font-size: 25px; }
+div b.hello{ font-size: 30px;}
+
+div#pic{ 
+	height: 300px; background-color: yellow;
+	background-image: url('../images/pic.png');
+}
+
+img{
+	border: 5px dotted brown;
+}
+
+
+
