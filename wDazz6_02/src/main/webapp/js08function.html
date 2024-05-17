@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>~ 함수 작성 정리 ~</h2>
+<script type="text/javascript">
+function func1() {
+	document.write(`fucn1`);
+}
+func1();
+
+document.write(`<br>`);
+let my = func1; // 복사 (함수 주소 치환)
+my();
+
+function func2(a, b = 20) { // 매개변수(parameter)에 초기치 부여 가능
+	let c = a + b;
+	return c;
+}
+
+let re = func2(1, 2);
+document.write(`<br>re : ${re}`);
+re = func2("팀장", "야호");
+document.write(`<br>re : ${re}`);
+re = func2(5); // b의 값을 넘겨 주지 않았기 때문에 매개변수에 지정한 20이 들어감
+document.write(`<br>re : ${re}`);
+
+function func3() {
+	document.write(`<hr>arguments 갯수 : ${arguments.length}`);
+	document.write(`<br>arguments 값 : ${arguments[0]}, ${arguments[1]}`);
+}
+
+func3();
+func3(3, 4);
+func3(3, 4, 5);
+func3(1, "메렁");
+
+function hap() {
+	let tot = 0;
+	for (let i = 0; i < arguments.length; i++) {
+		tot += arguments[i];
+	}
+	return tot;
+}
+// * prototype 지원
+// arguments 객체는 함수에 전달된 인수에 해당하는 Array 형태의 객체
+document.write("<hr/>", hap(1, 2, 3));
+document.write("<br/>", hap(1, 2, 3, 4));
+document.write("<br/>", hap("안녕", "까치"));
+
+document.write(`<hr/><b>익명 함수</b><br/>`);
+(function() {
+	document.write(`<br/>함수명이 없는 일회용 함수`);
+	document.write(`<br/><i>휘발성, 단발성</i>`);
+	document.write(`<br/><i>초기화 작업시에 효과적으로 사용</i>`);
+})(); 
+
+document.write(`<hr/><b>함수 표현식</b><br/>`);
+document.write(`<br/>익명 함수를 변수에 치환<br/>`);
+const test = function(n1, n2) {
+	document.write(`두 수의 합은 ${n1 + n2}<br/>`);
+};
+test(5, 6);
+let test02 = test;
+test02(5, 6);
+</script>
+<div style="background-color: yellow;"><hr/><b>선언적 함수와 함수 표현식의 차이</b></div>
+<script type="text/javascript">
+// 호이스팅 : 인터프리터가 변수(var로 선언)와 함수의 메모리 공간을 실행 전에 미리 할당 
+func4();
+function func4() { // 선언적 함수
+	document.write(`<br/>선언적 함수 실행(메모리에 계속 존재)`);
+}
+func4();
+
+// myFunc(); // ERROR
+let myFunc = function() {
+	document.write(`<br/>함수 표현식 : 익명 함수 실행(휘발성, 동적)`);
+	// 함수 표현식은 실제 실행 흐름이 해당 함수에 도달했을 때 함수를 생성(동적으로 메모리 확보)
+}
+myFunc();
+myFunc();
+
+document.write(`<hr/><b>중첩 함수 (내부 함수)</b><br/>`);
+function func5() {
+	function fu1() {
+		document.write(`<br>fu1 수행`);
+	}
+	function fu2() {
+		document.write(`<br>fu2 처리`);
+	}
+	fu1();
+	fu2();
+}
+func5();
+
+function abc(a, b) {
+	function def(x) {
+		return x * x;
+	}
+	return Math.sqrt(def(a) + def(b));
+}
+document.write("<br/>", abc(3, 4));
+
+document.write(`<hr/><b>익명 함수 반환</b><br/>`);
+function outer1() {
+	return function() {
+		document.write(`<br/>HELLO WORLD`);		
+	}
+}
+outer1()();
+
+function outer2(name) {
+	let msg = "안녕 " + name;
+	return function() {
+		document.write(`<br/>${msg}`);		
+	}
+}
+outer2("이름")();
+
+let mbc = function(para1) {
+	let b = function(para2) {
+		return para2 * 2;
+	};
+	return `결과 : ${b(para1)}`;
+}
+
+document.write("<br/>" + mbc(11));
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

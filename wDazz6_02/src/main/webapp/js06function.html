@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수(function)</title>
+</head>
+<body>
+<h1>함수(function)</h1>
+
+<b><i>type : Object</i></b><br/>
+하나의 특별한 목적의 작업을 수행하도록 설계된 독립적인 블록 {}을 의미<br/>
+함수의 정의는 function 키워드로 시작<br/><br/>
+<b>구성 요소</b><br/>
+1. 함수의 이름<br/>
+2. 괄호 안에 쉼표로 구분되는 매개변수(parameter)<br/>
+3. 중괄호로 둘러싸인 자바스크립트 실행문<br/><br/>
+
+<b>문법</b>
+<pre><span style="color: silver">
+function 함수이름([매개변수1, 매개변수2, ...]) {
+	함수가 호출되었을 때 실행하고자 하는 실행문;
+	[return 반환값]
+}
+</span></pre>
+
+<hr/>
+<b style="font-size: 120%"><i>내장함수와 사용자 정의 함수</i></b>
+<script type="text/javascript">
+document.write("<br/>1. 내장함수 중 <b>문자</b> 관련 함수");
+let str = "JavaScipt Language";
+document.write(`<br/>str.charAt(2) : ${str.charAt(2)}`);
+document.write(`<br/>str.indexOf('v') : ${str.indexOf('v')}`);
+document.write(`<br/>str.indexOf('V') : ${str.indexOf('V')}`); // 없으면 -1 반환
+document.write(`<br/>str.substring(1, 3) : ${str.substring(1, 3)}`); // 1 이상, 3 미만
+document.write(`<br/>str.slice(0, 3) : ${str.slice(0, 3)}`); // 시작 인덱스, 갯수
+
+document.write("<br/><br/>2. 내장함수 중 <b>스타일</b> 관련 함수");
+document.write(`<br/>str.bold() : ${str.bold()}`);
+document.write(`<br/>str.big().strike() : ${str.big().strike()}`);
+
+document.write("<br/><br/>3. 내장함수 중 <b>수학</b> 관련 함수");
+document.write(`<br/>Math.abs(-7) : ${Math.abs(-7)}`);
+document.write(`<br/>Math.round(3.6) : ${Math.round(3.6)}`);
+document.write(`<br/>Math.random() : ${Math.random()}`); // 0 ~ 1 사이의 난수
+
+document.write("<br/><br/>4. 내장함수 중 <b>날짜</b> 관련 함수");
+let d = new Date();
+document.write(`<br/>Date() : ${Date()}`);
+document.write(`<br/>d : ${d}`);
+document.write(`<br/>${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 ${d.getHours()}시`);
+
+document.write("<br/><br/>5. 내장함수 중 <b>기타</b> 함수");
+document.write(`<br/>parseInt() : ${parseInt('3.4') + 5}`); // 버림
+document.write(`<br/>parseFloat() : ${parseFloat('3.7') + 5}`); // 실수화
+document.write(`<br/>isNaN() : ${isNaN('3.4')}`); // 숫자 여부 확인, 맞으면 false
+document.write(`<br/>isNaN() : ${isNaN('바보')}`); // true
+let ss1 = encodeURI('자바스크립트');
+document.write(`<br/>encodeURI() : ${ss1}`);
+let ss2 = decodeURI(ss1);
+document.write(`<br/>encodeURI() : ${ss2}`);
+
+// 별도의 창 열기
+// open('파일명', 출력형태, '속성')
+// 출력형태 기본값 : _blank
+// open('js01.html', '_blank', 'width = 700, height = 400, left = 100, top = 200, resizable = yes');
+
+</script>
+</body>
+</html>

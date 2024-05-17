@@ -5,10 +5,13 @@
 <title>배열</title>
 </head>
 <body>
-<h2>배열</h2>
-- 여러 기억장소에 대해 하나의 대표명(배열명)을 부여<br/>- 배열명[첨자] 형태로 각 기억장소를 구분<br/>- 반복 처리가 효과적
-<br/>형식 : 배열명 = new Array();<br/>
-<script type="text/javascript">
+	<h2>배열</h2>
+	- 여러 기억장소에 대해 하나의 대표명(배열명)을 부여
+	<br />- 배열명[첨자] 형태로 각 기억장소를 구분
+	<br />- 반복 처리가 효과적
+	<br />형식 : 배열명 = new Array();
+	<br />
+	<script type="text/javascript">
 	let aa = new Array();
 	aa[0] = 10;
 	aa[1] = 10.5;
@@ -56,6 +59,101 @@
 		document.write(animal[ani] + " ");	
 	}
 	
+	document.write("<hr/><b>240517</b><hr/>");
+	let [kbs, mbc] = [9, 11];
+	document.write(`kbs : ${kbs}, mbc : ${mbc}`)
+	
+	document.write("<br/>");
+	let myarr = ['안녕', true, 3.5, {name:'이름'}, function(){document.write("함수 실행")}];
+	// 배열 요소의 자료형에는 제약이 없음
+	document.write(myarr[0]);
+	document.write(myarr[3].name);
+	myarr[4]();
+	
+	document.write("<br/>");
+	let arrliteral = [[1, 2, 3], ['a', 'b'], [4, 5]]; // 배열 리터럴
+	document.write(arrliteral);
+	document.write("<br/>", arrliteral[0]);
+	document.write("<br/>", arrliteral[0][0]);
+	
+	document.write("<hr/><b>배열 요소 출력시 for 사용</b>")
+	let korea = ["연필", "지우개", "노트"];
+	document.write("<br/>방법 1)<br/>");
+	for (let i = 0; i < korea.length; i++) {
+		document.write(korea[i] + " ");
+	}
+	document.write("<br/>방법 2)<br/>");
+	for (let i of korea) {
+		document.write(i + " ");
+	}
+	document.write("<br/>방법 3)<br/>");
+	for (let i in korea) {
+		document.write(korea[i] + " ");
+	}
+	
+	document.write("<hr/><b>document 객체 요소 값 출력</b>(주석 참조)");
+	/*
+	let output = "";
+	for (let k in document) {
+		output += "[" + k + "]" + document[k] + "<br/>";
+	}
+	document.write(output);
+	*/
+	
+	document.write("<hr/><b>배열 요소 제거</b><br/>delete, splice<br/>");
+	let ar = ['I', 'go', 'home'];
+	delete ar[1]; // go를 삭제, 자리는 남음
+	document.write(ar, ' ', ar.length, "<br/>"); // I, ,home 3
+	
+	ar = ['I', 'go', 'home'];
+	ar.splice(1, 1); // 인덱스 1부터 1개 삭제
+	document.write(ar, ' ', ar.length);
+	// ar.pop(); // 배열의 마지막 요소 삭제
+	ar.shift(); // 배열의 첫 번째 요소 삭제
+	document.write('<br/>', ar, ' ', ar.length);
+	ar.push('good'); // 추가
+	ar.splice(2, 0, 'kbs', 'mbc'); // 추가 (다목적)
+	document.write("<br/>", ar, ' ', ar.length);
+	
+	document.write("<hr/><b>구조 분해 할당</b><br/>배열, 객체의 값들을 추출하여 한 번에 여러 변수 할당<br/><i>사용 빈도 잦음</i><br/>");
+	let nums = [1, 2, 3, 4];
+	let [a1, a2, a3] = nums;
+	document.write(`${a1}, ${a2}, ${a3}`);
+	
+	let persons = {name:'이기자', age:22, gender:'남'};
+	let {name:irum, age:nai, gender:gen} = persons;
+	document.write(`<br/>${irum}, ${nai}, ${gen}`);
+	let {name, age, gender} = persons; // 변수명과 key가 같은 경우 key 이름만 기재 (키 이름이 변수명이 됨)
+	document.write(`<br/>${name}, ${age}, ${gender}`);
+	
+	document.write("<hr/><b>전개 연산자</b><br/>spread operator : ...<br/>배열이나 객체를 <i>... 연산자</i>와 함께 사용하면 배열이나 객체 내의 값을 분해된 값으로 전달<br/>");
+	let digits = [..."0123abc"]; // 배열 앞에 ...를 붙여 줌으로써 문자열에 들어있는 값이 하나씩 분해
+	document.write(digits, " ", digits.length);
+	let a = [1, 2, 3];
+	let b = [0, ...a, 4]; // 중첩된 배열 요소값에 적용
+	document.write("<br/>", b, " ", b.length);
+	
+	document.write("<hr/><b><i>전통적 방법 (concat)</i></b>");
+	const arr1 = [1, 2, 3];
+	const arr2 = [4, 5, 6];
+	const arr3 = arr1.concat(arr2);
+	document.write("<br/>", arr3, "<br/><b><i>전개 연산자 사용</i></b>");
+	const arr4 = [...arr1, ...arr2];
+	document.write("<br/>", arr4);
+	
+	document.write("<hr/>");
+//	arr1.push(arr2);
+	arr1.push(...arr2);
+	document.write(arr1);
+	
+	document.write("<br/>");
+	const fruits = ['apple', 'peach', 'melon'];
+	const arr5 = [...fruits]; // 배열에 담기
+	document.write(arr5);
+	
+	document.write("<br/>");
+	const obj1 = {...fruits}; // 객체에 담기
+	document.write(obj1, " ", obj1[0]);
 	
 </script>
 </body>
