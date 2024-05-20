@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>innerText와 innerHTML</title>
+<script type="text/javascript">
+function func1() {
+	let str1 = document.getElementById("test1").innerHTML; // get
+	document.getElementById("show1").innerHTML = str1; // set
+	document.getElementById("show2").innerHTML = "<i>" + str1 + "</i>";
+	
+	let mytag = "이름 : <input type='text' name='irum'></input>";
+	mytag += "<br/>";
+	mytag += "나이 : <input type='text' name='nai' value='23'></input>";
+	document.getElementById("test1").innerHTML = mytag;
+}
+function func2() {
+	let str2 = document.getElementById("test2").innerText; // get
+	document.getElementById("show1").innerText = str2; // set
+	document.getElementById("show2").innerText = "<i>" + str2 + "</i>";
+}
+</script>
+</head>
+<body>
+<h2>실행 중 태그 또는 데이터의 생성, 삭제, 수정, 참조 처리 가능</h2>
+<b>innerText;</b><br/>
+element 안 text 값들만을 수정, 참조<br/>
+태그도 텍스트 처리<br/>
+<b>innerHTML;</b><br/>
+element 안 text에 HTML이나 XML이 있으면 기능 발휘<br/>
+<i>DOM* 기능</i> 일부 수행<br/>
+<span style="font-size: 70%;"> * DOM : Document Object Model의 약자로, HTML 요소를 JavaScript Object처럼 조작할 수 있는 Model</span>
+<hr/>
+<div id="test1"><h2>innerHTML 연습</h2></div>
+<div id="test2"><h2>안녕하세요</h2></div>
+<input type="button" value="처리 1" onclick="func1()"></input>
+<input type="button" value="처리 2" onclick="func2()"></input>
+<br/>
+<div id="show1"></div>
+<div id="show2"></div>
+</body>
+</html>

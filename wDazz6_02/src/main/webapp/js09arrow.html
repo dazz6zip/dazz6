@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Arrow Function</title>
+<script type="text/javascript">
+const sum1 = function(a, b) {
+	return a + b;
+}
+console.log(`두 수의 합 : ${sum1(3, 4)}`);
+
+const sum2 = (a, b) => a + b;
+console.log(`두 수의 합 (arrow) : ${sum2(3, 4)}`);
+
+let double1 = (n) => n * 2;
+console.log(double1(3));
+
+let sayHi = () => '안녕하세요';
+console.log(sayHi());
+
+// let age = prompt ('나이 입력', 22);
+let age = 33;
+let welcome = (age < 30) ? () => "안녕" : () => "반가워";
+console.log(welcome());
+
+console.log("-----");
+// console.clear(); // 콘솔 비우기
+let sunFunc = (a, b) => {
+	let result = a + b;
+	return result;
+}
+console.log(`sunFunc 결과 : ${sunFunc(3, 4)}`);
+
+console.log("-----");
+// 반복문 처리 : for
+function func(...para) {
+	console.log(para.length, ' ', para);
+	
+	for (let i = 0; i < para.length; i++) {
+		console.log(para[i]);
+	}
+	
+	for (let s of para) {
+		console.log(s);
+	}
+	
+	// Array.forEach(callbackFn [,arg])
+	para.forEach(function(obj){ // 콜백함수
+		console.log(obj);
+	});
+	
+	(para.forEach((obj) => console.log(obj)));
+}
+func('a', 'b', 'c', 'd');
+
+console.log("-----");
+// setInterval : 일정한 시간 간격을 두고 반복해서 실행
+// setInterval(수행함수, 시간)
+// setInterval(() => console.log(new Date()), 2000); // 2초 간격으로 날짜 출력
+
+// setTimeout : 바로 실행하지 않고 일정 시간 기다린 후 실행
+// setTimeout(수행함수, 시간)
+// setTimeout(() => console.log("2초 후 실행"), 2000); // 2초 뒤 출력
+
+console.log('처리 1');
+setTimeout(function() {
+	console.log('처리 2');
+}, 3000);
+console.log('처리 3');
+
+// argument로 화살표 함수 사용
+function abcFunc(su, f1, f2) {
+	if (su % 2 === 0) {
+		f1();
+	} else {
+		f2();
+	}
+}
+abcFunc(2, () => console.log('짝수'), () => console.log('홀수'));
+/*
+function ask(question, yes, no) {
+	if(confirm(question)) {
+		yes();
+	} else {
+		no();
+	}
+}
+
+function showOk() {
+	console.log("동의");
+}
+
+function showCancel() {
+	console.log("취소");
+}
+
+ask("동의하십니까?", showOk, showCancel);
+*/
+</script>
+</head>
+<body>
+	<h2>화살표 함수</h2>
+	<i>함수 표현식보다 단순하고 간결한 문법으로 함수를 만들 수 있는 방법</i>
+	<hr />
+	<h3>콜백</h3>
+	다른 코드의 인수로서 넘겨 주는 실행 가능한 코드
+	<br /> 즉시 실행할 수도 있고, 나중에 실행할 수도 있음
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>재귀(recursion)</title>
+</head>
+<body>
+	<h2>재귀 함수</h2>
+	<i><b>함수가 자신을 다시 호출하는 구조</b></i>로 종료 조건이 있어야 하며 반복문으로도 작성할 수 있음
+<script type="text/javascript">
+console.log("거듭제곱(내장함수) : ", Math.pow(2, 3));
+
+// 거듭제곱 함수 직접 작성 : for loop
+function powFunc1(x, n) {
+	let result = 1;
+	for (let i = 0; i < n; i++) {
+		result *= x;
+	}
+	return result;
+}
+console.log("거듭제곱(사용자 정의 함수) : ", powFunc1(2, 3));
+
+// 재귀함수
+// 반복 횟수가 많으면 비권장
+function powFunc2(x, n) {
+	if (n === 1) {
+		return x;
+	} else {
+		return x * powFunc2(x, n - 1); // 함수 자신을 호출		
+	}
+}
+console.log("거듭제곱(재귀함수) : ", powFunc2(2, 3));
+
+// 삼항연산자에 재귀함수
+function powFunc3(x, n) {
+	return (n === 1) ? x : (x * powFunc3(x, n - 1));
+}
+console.log("거듭제곱(재귀함수 + 삼항연산자) : ", powFunc3(2, 3));
+
+//삼항연산자에 재귀함수, 화살표함수
+const powFunc4 = (x, n) => (n === 1) ? x : (x * powFunc4(x, n - 1));
+console.log("거듭제곱(재귀함수 + 삼항연산자 + 화살표함수) : ", powFunc4(2, 3));
+</script>
+</body>
+</html>

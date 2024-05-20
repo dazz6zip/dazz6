@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>간단 계산기</title>
+<script type="text/javascript">
+window.onload = () => {
+	
+	document.querySelector("#calc0").onclick = function() {
+		document.querySelector("#dp").innerHTML += 0;
+	}
+	document.querySelector("#calc1").onclick = function() {
+		document.querySelector("#dp").innerHTML += 1;
+	}
+	document.querySelector("#calc2").onclick = function() {
+		document.querySelector("#dp").innerHTML += 2;
+	}
+	document.querySelector("#calc3").onclick = function() {
+		document.querySelector("#dp").innerHTML += 3;
+	}
+	document.querySelector("#calc4").onclick = function() {
+		document.querySelector("#dp").innerHTML += 4;
+	}
+	document.querySelector("#calc5").onclick = function() {
+		document.querySelector("#dp").innerHTML += 5;
+	}
+	document.querySelector("#calc6").onclick = function() {
+		document.querySelector("#dp").innerHTML += 6;
+	}
+	document.querySelector("#calc7").onclick = function() {
+		document.querySelector("#dp").innerHTML += 7;
+	}
+	document.querySelector("#calc8").onclick = function() {
+		document.querySelector("#dp").innerHTML += 8;
+	}
+	document.querySelector("#calc9").onclick = function() {
+		document.querySelector("#dp").innerHTML += 9;
+	}
+	// -----
+	document.querySelector("#calcp").onclick = function() {
+		document.querySelector("#dp").innerHTML += "+";
+	}
+	document.querySelector("#calcm").onclick = function() {
+		document.querySelector("#dp").innerHTML += "-";
+	}
+	document.querySelector("#calcx").onclick = function() {
+		document.querySelector("#dp").innerHTML += "*";
+	}
+	document.querySelector("#calcd").onclick = function() {
+		document.querySelector("#dp").innerHTML += "/";
+	}
+	// -----
+	document.querySelector("#calcdot").onclick = function() {
+		document.querySelector("#dp").innerHTML += ".";
+	}
+	
+	document.querySelector("#calce").onclick = function() {
+		let dpinput = document.querySelector("#dp").innerHTML;
+		document.querySelector("#rst").innerHTML = eval(dpinput);
+	}
+	
+	document.querySelector("#ac").onclick = function() {
+		document.querySelector("#dp").innerHTML = "";
+		document.querySelector("#rst").innerHTML = "";
+	}
+}
+
+
+</script>
+<style>
+table {
+	border-collapse: collapse;
+}
+
+td {
+	padding: 5px 10px;
+	text-align: center;
+}
+
+input {
+	text-align: right;
+	border: none;
+}
+
+input:focus {
+	outline: none;
+}
+</style>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td colspan="4"><span id="dp"></span><input type="text"
+				id="display" placeholder="display"></td>
+		</tr>
+		<tr>
+			<td colspan="4"><span id="rst"></span><input type="text"
+				id="result" placeholder="result"></td>
+		</tr>
+		<tr>
+			<td colspan="3" id="ac">AC</td>
+			<td id="calcd">/</td>
+		</tr>
+		<tr>
+			<td id="calc7">7</td>
+			<td id="calc8">8</td>
+			<td id="calc9">9</td>
+			<td id="calcx">*</td>
+		</tr>
+		<tr>
+			<td id="calc4">4</td>
+			<td id="calc5">5</td>
+			<td id="calc6">6</td>
+			<td id="calcm">-</td>
+		</tr>
+		<tr>
+			<td id="calc1">1</td>
+			<td id="calc2">2</td>
+			<td id="calc3">3</td>
+			<td id="calcp">+</td>
+		</tr>
+		<tr>
+			<td colspan="2" id="calc0">0</td>
+			<td id="calcdot">.</td>
+			<td id="calce">=</td>
+		</tr>
+	</table>
+</body>
+</html>
