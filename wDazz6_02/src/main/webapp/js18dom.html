@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Document Object Model 1</title>
+<script type="text/javascript">
+function abc() {
+	let my = document.getElementById("my");
+	console.log(`노드네임 : ${my.nodeName}, 자식노드 : ${my.childNodes[0].nodeValue}, ${my.firstChild.nodeValue}`);
+	// childNodes[0] = firstChild
+	console.log(my.getAttribute("id"));
+	console.log(my.getAttribute("comments"));
+}
+
+function def() {
+	let arr = document.getElementsByTagName("input");
+	console.log(`arr 크기 : ${arr.length}`);
+	console.log(arr[0].getAttribute("value"));
+	console.log(arr[1].getAttribute("value"));
+}
+
+function func(para) {
+	let ele = document.createElement("i"); // "<i>" 내용 </i>
+	let itext = document.createTextNode(para); // <i> "내용" </i> 
+	ele.appendChild(itext); // <i> 내용 "</i>"
+	document.getElementById("show").appendChild(ele);
+}
+
+function clrFunc() {
+	let target = document.getElementById("show");
+//	target.removeChild(target.lastChild);
+//	target.removeChild(target.firstChild);
+	while (target.hasChildNodes()) {
+	target.removeChild(target.childNodes[0]);		
+	}
+}
+</script>
+</head>
+<body>
+<h1>DOM Test</h1>
+구조화된 문서(ML, tree 구조)에 접근하여 요소 및 속성 또는 텍스트를 참조, 수정, 삭제, 추가할 수 있는 기술
+<h2 id="my" comments="속성">DOM 객체 참조</h2>
+<input type="button" value="ID 검색" onclick="abc()"><br/>
+<input type="button" value="element 검색" onclick="def()"><br/><br/>
+<h2>요소 생성 및 삭제</h2>
+<button onclick="func('안녕')">요소 생성 1</button>
+<button onclick="func('방가버')">요소 생성 2</button>
+<button onclick="clrFunc()">요소 삭제</button>
+<br/>
+<div id="show"></div>
+</body>
+</html>
+
+

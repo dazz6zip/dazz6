@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>re_bootstrap</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnSend").onclick = chkData;
+	document.querySelector("#btnClear").onclick = clrData;
+}
+
+function chkData(e) {
+	e.preventDefault(); // submit 고유 기능 해제
+//	alert("a");
+	// 입력 자료 오류 검사 후 서버로 자료 전송
+	if(frm.name.value === "" || isNaN(frm.name.value) === false) {
+		frm.name.focus();
+		alert("이름 입력 오류");
+		return;
+	}
+	
+	if (frm.id.value.length < 3) {
+		frm.id.focus();
+		alert("아이디 입력 오류");
+		return;
+	}
+	
+	// 정규표현식 - 여러 용도 중 입력 자료 검사용 ------- 추가 정리 필요
+	let str = "123Abc가나다45홍 asdf1 23길동";
+	// 반환값은 배열, 한 글자 단위가 기본
+	console.log(str.match(/[1]/)); // 일치하는 값 최초의 한 개만 반환
+	console.log(str.match(/[1]/g)); // g : global, 일치하는 값 모두 반환
+	console.log(str.match(/[0-9]/g)); // 모든 숫자 반환
+	console.log(str.match(/\d/g)); // 위 구문과 동일
+	console.log(str.match(/[0-9 ]/g)); // 모든 숫자와 공백 반환
+	console.log(str.match(/[가나]/g));
+	console.log(str.match(/[가-힣]/g)); // 모든 한글 문자 반환
+	console.log(str.match(/[a-z]/g)); // 소문자 영어 문자 반환
+	console.log(str.match(/[a-z]/gi)); // 모든 영어 문자 반환 ( i(ignore) : 대소문자 구분 안 함)
+	console.log(str.match(/[a-z0-9]/gi)); // 한글 제외 모든 영어 문자 및 숫자 반환
+	console.log(str.match(/[가-힣]+/g)); // 붙어 있는 한글 문자열 단위 반환
+	console.log(str.match(/\d{2}/g)); // 붙어 있는 숫자 두 개씩 반환 (두 글자 이상은 버림)
+	console.log(str.match(/\d{2,3}/g)); // 붙어 있는 숫자 두 개 또는 세 개 반환
+	
+	// 이메일 검사 
+	let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+	if(!frm.email.value.match(regExp)) {
+		frm.email.focus();
+		alert("이메일 입력 오류");
+		return;
+	}
+	
+	// 나이 검사
+	let regExp2 = /^[0-9]{1,2}$/
+	if(!frm.age.value.match(regExp2)) {
+		frm.age.focus();
+		alert("나이 입력 오류");
+		return;
+	}
+	
+	frm.action = "js17form.jsp";
+	frm.method = "post";
+	frm.submit();
+}
+
+function clrData() { // reset + 추가 기능
+//	alert("b");	
+//	frm.name.focus();
+	document.querySelector("#name").focus(); // 위 구문과 결과 동일
+}
+</script>
+</head>
+<body>
+	<h2>개인 자료 입력</h2>
+	<!-- 
+	<form action="js17form.jsp" name="frm" method="post">
+	 -->
+	 <form name="frm">
+	 	<table class="table">
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="name" id="name" value="홍길동"></input></td>
+			</tr>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="id" placeholder="3자 이상"></input></td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td><input type="text" name="email"></input></td>
+			</tr>
+			<tr>
+				<td>나이</td>
+				<td><input type="text" name="age" maxlength="2"></input></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;"><input
+					type="submit" id="btnSend" value="자료 전송" class="btn btn-dark"></input> <input
+					type="reset" id="btnClear" value="자료 삭제" class="btn btn-link"></input></td>
+			</tr>
+		</table>
+	</form>
+<button type="button" class="btn">Basic</button>
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-dark">Dark</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-link">Link</button>
+<button type="button" class="btn btn-outline-primary">Primary</button>
+<button type="button" class="btn btn-outline-secondary">Secondary</button>
+<button type="button" class="btn btn-outline-success">Success</button>
+<button type="button" class="btn btn-outline-info">Info</button>
+<button type="button" class="btn btn-outline-warning">Warning</button>
+<button type="button" class="btn btn-outline-danger">Danger</button>
+<button type="button" class="btn btn-outline-dark">Dark</button>
+<button type="button" class="btn btn-outline-light text-dark">Light</button>
+
+<hr/>
+<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Open modal
+</button>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

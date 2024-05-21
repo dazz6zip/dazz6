@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Document Object Model 2</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("sel").onchange = () => {
+		let sangpum = comments = "";
+		
+		const sel = frm.sel.options[frm.sel.selectedIndex].value;
+		console.log(sel);
+		const sang = frm.sel.options[frm.sel.selectedIndex].text;
+		console.log(sang);
+		
+		if (sel === '10') { // 마우스
+			sangpum = sang;
+			comments = `${sangpum} 관련 정보`;
+		} else if (sel === '20') { // 키보드
+			sangpum = sang;
+			comments = `${sangpum} 관련 정보`;
+		} else if (sel === '30') { // 모니터
+			sangpum = sang;
+			comments = `${sangpum} 관련 정보`;
+		}
+		
+		console.log(sangpum, " ", comments);
+		
+		addRow(sangpum, comments);
+		
+		//table에 border 속성 추가
+		document.getElementById("myTable").setAttribute("border", 1);
+	}
+	
+	// 제목 출력
+	let h = document.createElement("h2");
+	let t = document.createTextNode("결과 : ");
+	h.appendChild(t);
+	document.getElementById("header").appendChild(h);
+}
+
+function addRow(sangpum, comments) {
+	// <tr> 생성
+	let row = document.createElement('tr');
+	let col = addCol(sangpum);
+	row.appendChild(col); // <tr><td>상품명</td></tr>
+	col = addCol(comments);
+	row.appendChild(col); // <tr><td>상품명</td></tr><tr><td>설명</td></tr>
+	
+	document.getElementById("myTbody").appendChild(row);
+}
+
+function addCol(para) {
+	// <td> 생성
+	let col = document.createElement('td');
+	let ctext = document.createTextNode(para);
+	col.appendChild(ctext);
+	return col; // <td>값</td> 전달
+}
+</script>
+</head>
+<body>
+	<h2>tag 생성 관련</h2>
+	<form action="#" name="frm">
+		상품 선택 : <select name="sel" id="sel">
+			<option value="">선택</option>
+			<option value="10">마우스</option>
+			<option value="20">키보드</option>
+			<option value="30">모니터</option>
+		</select> <hr />
+		<span id="header"></span>
+		<table id="myTable">
+			<tbody id="myTbody"></tbody>
+		</table>
+	</form>
+</body>
+</html>
