@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>closure</title>
+</head>
+<body>
+<h2>클로저</h2>1. 내부 함수에서 외부 함수의 범위에 대한 접근 제공<br/>2. 함수가 생성될 때마다 생성<br/>
+3. 어떤 함수와 해당 함수가 선언된 렉시컬 환경의 조합 (<b>내부함수</b>)<br/>
+4. <i>상위함수</i>보다 <i>하위함수</i>가 더 오래 살아 있는 경우를 말함
+<hr/>
+<script type="text/javascript">
+function func() {
+	let name = 'tom';
+	let no = 1; // 지역 변수 
+	function displayName() { // 내부 함수 (메소드 아님)
+		console.log(name + no);
+		no++;
+	}
+	displayName();
+}
+
+func();
+func();
+func();
+
+// 클로저(closure) 사용
+function makeFunc() {
+	let name = 'james';
+	let no = 1;
+	function displayName() { // 내부 함수 (메소드 아님)
+		console.log(name + no);
+		no++;
+	}
+	return displayName; // 클로저 : 내부 함수 주소 반환
+	// return displayName() 은 실행 결과를 반환하는 것이기 때문에 불가능
+}
+
+let myFunc = makeFunc(); // displayName 함수의 주소 치환
+myFunc();
+myFunc();
+myFunc();
+
+function makeAdd(x) {
+	return function(y) { // 함수를 반환 (실행 결과 아님)
+		return x + y;
+	};
+}
+
+let tot = makeAdd(5);
+console.log(tot(3));
+console.log(tot(5));
+
+let tot2 = makeAdd(10);
+console.log(tot2(3));
+console.log(tot2(5));
+</script>
+</body>
+</html>
+
+
+
+
+
+
