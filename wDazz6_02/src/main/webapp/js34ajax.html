@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnOk").onclick = function() {
+		start();
+	};
+}
+
+let xhr;
+
+function start() {
+//	alert('a');
+	xhr = new XMLHttpRequest(); // AJAX 지원 js 개체
+	xhr.open('get', 'js34text.txt', true);
+	xhr.onreadystatechange = function(){
+		process();
+	}
+	
+	xhr.send(null);
+	// open ~ onreadystatechange ~ send
+}
+
+function process() {
+	let data = xhr.responseText;
+	console.log(data);
+}
+</script>
+</head>
+<body>
+<h2>Ajax test</h2>
+<button id="btnOk">Ajax test</button>
+<hr/>
+<div id="disp"></div>
+</body>
+</html>
