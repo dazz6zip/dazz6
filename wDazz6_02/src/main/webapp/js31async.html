@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>async 2</title>
+<script type="text/javascript">
+async function f1() {
+	return Promise.resolve(1);
+}
+
+// f1().then(alert);
+f1().then(function(result){ // await를 적지 않을 경우 then 사용
+	console.log(result);
+});
+
+// 함수 호출 시 result가 2인 이행 promise 반환
+async function f2() {
+	return 2; // 묵시적으로 promise 결과 반환
+}
+
+f2().then(function(result){
+	console.log(result);
+});
+
+// await 키워드는 async 함수 안에서만 유효
+async function f3() {
+	let promise = new Promise((resolve, reject) => {
+		setTimeout(() => resolve('완료'), 1000);
+	});
+	
+	let result = await promise; // Promise가 이행될 때까지 대기
+	console.log(`result : ${result}`);
+}
+
+f3();
+
+// 주의 : async 없는 함수에서 await 독립 사용 불가
+/*
+function f() {
+	let pro = Promise.resolve(1);
+	let result = await pro; // 에러
+}
+*/
+
+// await는 Thenable 객체를 받음
+// promise.then처럼 await에 Thenable 객체 사용
+// Thenable : then 메소드가 있는 호출 가능한 객체
+
+class Thenable{
+	constructor(num) {
+		this.num = num;
+	}
+	
+	then(resolve, reject) {
+		console.log(`resolve : ${resolve}`);
+		setTimeout(() => resolve(this.num * 2), 1000);
+	}
+};
+
+async function ff() {
+	let result = await new Thenable(1);
+	console.log(`result : ${result}`);
+}
+
+ff();
+
+class MyClass {
+	kbs = 9;
+	async wait() { // 메소드에 async 적용
+		return await Promise.resolve(this.kbs);
+	}
+}
+
+new MyClass().wait().then(alert);
+</script>
+</head>
+<body>
+<h2>Promise 객체 반환 처리 async ~ await</h2>
+<b><i>async ~ await는 promise 기반 작동</i></b>
+await 함수는 <i>promise</i>를 반환<br/>
+해당 함수는 <i>promise</i>가 실행될 때까지 대기<br/>
+처리가 완료되면 <i>성공</i> 또는 <i>실패</i> 처리<br/>
+가독성이 좋은 비동기 처리 코드 작성 가능<br/>
+</body>
+</html>

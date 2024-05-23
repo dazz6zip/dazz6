@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>promise</title>
+</head>
+<body>
+<h2>비동기 처리용 Promise 객체</h2>
+주로 웹 서버에서 받아온 자료를 클라이언트에서 비동기적으로 처리하기 위한 목적<hr/>
+<h3>콜백 지옥</h3>
+<b>비동기 프로그래밍시 발생하는 문제</b>로, 함수의 매개 변수로 넘겨지는 콜백 함수가 반복되어 
+<b>코드의 들여쓰기 수준이 감당하기 힘들 정도로 깊어지는</b> 현상<hr/>
+<h3>Promise 객체</h3>
+<b>콜백 지옥을 방지</b>하기 위해 사용되며, 사용자 로그인, 보안 설정, 출력 등 다양한 응용 가능<br/>
+Promise 객체가 만들어지면 내부적으로 <b>executor*</b> 자동 실행<br/>
+new Promise(executor)일 때 <b>state</b>는 <i>"pending(대기)"</i>, <b>result</b>는 <i>undefined</i><br/>
+비동기 처리가 되면 매개변수 resolve('메시지')는 then 메소드로 전달하여<br/>
+<b>state</b>는 <i>"fulfilled(이행)"</i>, <b>result</b>는 <i>'메시지'</i><br/>
+<span style="font-size: 80%; opacity: 50%;">* <b>executor</b> : resolve**와 reject***를 인수로 갖는 함수<br/>
+** <b>resolve(value)</b> : 성공적으로 끝난 경우 결과를 나타내는 value와 함께 호출<br/>
+*** <b>reject(error)</b> : 에러 발생시 에러 객체를 나타내는 error와 함께 호출
+</span>
+<script type="text/javascript">
+// 콜백 지옥
+/*
+function myProcess() {
+	// 비동기 처리 안에 여러 개의 비동기 처리를 하는 경우 콜백 지옥 발생
+	setTimeout(() => { // 가독성이 떨어짐
+		console.log('callback 1 complete');
+		setTimeout(() => {
+			console.log('callback 2 complete');
+			setTimeout(() => {
+				console.log('callback 3 complete');
+			}, 2000);
+		}, 2000);
+	}, 2000);
+}
+myProcess();
+console.log('END');
+*/
+
+// Promise 객체 실습 1
+/*
+const myPromise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('해당 값 then 메소드의 매개변수로 전달');
+	}, 2000);
+});
+myPromise.then((res) => {
+	console.log('then 메소드 처리');
+	console.log(res);
+});
+*/
+
+// Promise 객체 실습 2
+const myPromise = (seconds) => new Promise((resolve, reject) => {
+	setTimeout(() => {
+		let a = 2;
+		if (a % 2 === 0) {
+			resolve('해당 값 then 메소드의 매개변수로 전달');
+		} else {
+			reject('에러 처리 : reject 실행되면 catch로 받을 수 있음');
+		}
+		resolve();
+	}, seconds);
+});
+
+myPromise(2000)
+	.then((res) => {
+		console.log('then 메소드 처리 1');
+		console.log(res);
+		return myPromise(2000); // 다음 then 메소드 호출
+	}).then((res) => { // 체이닝(chaining) 가능
+		console.log('then 메소드 처리 2');
+		console.log(res);
+		return myPromise(2000); // 다음 then 메소드 호출
+	}).then((res) => {
+		console.log('then 메소드 처리 3');
+		console.log(res);
+		return myPromise(2000); // 다음 then 메소드 호출
+	}).catch((res) => {
+		console.log(res);
+	}); // finally 가능
+</script>
+
+</body>
+</html>
+

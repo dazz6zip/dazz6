@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>async 1</title>
+</head>
+<body>
+<h2>async ~ await</h2>
+Promise 객체를 <i>내부적으로 처리</i>하는 키워드<br/>
+일반적인 형태의 소스 코드를 작성하면서 비동기 처리 가능
+<script type="text/javascript">
+const myPromise = (seconds) => new Promise((resolve, reject) => {
+	setTimeout(() => {
+		let a = 2;
+		if (a % 2 === 0) {
+			resolve('해당 값 then 메소드의 매개변수로 전달');
+		} else {
+			reject('에러 처리 : reject 실행되면 catch로 받을 수 있음');
+		}
+		resolve();
+	}, seconds);
+});
+
+// async 형식
+/*
+async function 함수명() {
+	try {
+		await 비동기처리메소드(); // await는 async 안에서만 사용 가능 (독립 사용 불가)
+	} catch(e) {
+		
+	} finally {
+		
+	}
+}
+*/
+async function gogo() { // promise 반환값 처리 메소드
+	try {
+		const result1 = await myPromise(2000); // then 메소드 대체 역할
+		console.log(result1);
+		
+		const result2 = await myPromise(2000);
+		console.log(result2);
+		
+		const result3 = await myPromise(2000);
+		console.log(result3);
+	} catch(e) {
+		console.log(`ERROR : ${e}`);
+	} finally {
+		console.log('에러와 상관없이 늘 수행');
+	}
+}
+
+gogo();
+</script>
+</body>
+</html>
