@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sangdata</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnOk").onclick = sijak;
+}
+let xhr;
+function sijak() {
+//	alert("a");
+	xhr = new XMLHttpRequest();
+	xhr.open('get', 'js35.jsp', true);
+	
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200){
+				process();
+			}
+		}
+	}
+	xhr.send(null);
+}
+
+function process() {
+	let data = xhr.responseXML;
+//	alert(data);
+	let sangpumNode = data.getElementsByTagName("sangpum");
+	let codeNode = data.getElementsByTagName("code");
+	let sangNode = data.getElementsByTagName("sang");
+	let suNode = data.getElementsByTagName("su");
+	let danNode = data.getElementsByTagName("dan");
+	
+	let str = "<table border='1'>";
+	str += "<tr><th>상품번호</th><th>상품명</th><th>수량</th><th>단가</th></tr>"
+	for (let i = 0; i < sangpumNode.length; i++) {
+		str += "<tr>";
+		str += "<td>" + codeNode[i].firstChild.nodeValue + "</td>";
+		str += "<td>" + sangNode[i].firstChild.nodeValue + "</td>";
+		str += "<td>" + suNode[i].firstChild.nodeValue + "</td>";
+		str += "<td>" + danNode[i].firstChild.nodeValue + "</td>";
+		str += "</tr>";
+	}
+	
+	str += "</table>";
+	document.getElementById("disp").innerHTML = str;
+}
+</script>
+</head>
+<body>
+	<h2>mariaDB 자료 XML로 읽기</h2>
+	<button id="btnOk">XML로 읽기</button>
+	<hr />
+	<div id="disp"></div>
+</body>
+</html>

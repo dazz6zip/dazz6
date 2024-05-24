@@ -8,6 +8,9 @@ window.onload = () => {
 	document.querySelector("#btnOk").onclick = function() {
 		start();
 	};
+	document.querySelector("#btnOk2").onclick = start;
+	document.querySelector("#btnOk3").onclick = start;
+	document.querySelector("#btnOk4").onclick = start;
 }
 
 let xhr;
@@ -15,9 +18,38 @@ let xhr;
 function start() {
 //	alert('a');
 	xhr = new XMLHttpRequest(); // AJAX 지원 js 개체
-	xhr.open('get', 'js34text.txt', true);
+	
+	// cors 따름 - Same-Origin Policy(SOP) : 웹 보안의 기본적인 원칙 중 하나
+	// xhr.open('get', 'js34text.txt', true); // true : 비동기, false : 동기
+	// xhr.open('get', 'js34csv.txt', true); // csv 읽기
+	// xhr.open('get', 'js34.xml', true); // xml 읽기
+	xhr.open('get', 'js34.json', true); // JSON 읽기
+		
 	xhr.onreadystatechange = function(){
-		process();
+		// alert(xhr.readyState); // 통신 상태 확인
+		if (xhr.readyState === 4) {
+			//alert(xhr.status);
+			if (xhr.status === 200){
+				// 비동기 상태의 요청
+				process();
+			}
+		}
+		
+		/*
+		status 속성값
+			200: 성공 (OK)
+			403: 접근거부 (Forbidden)
+			404: 파일 없음 (Not Found)
+			500: 서버 내부 오류 (Internal Server Error)
+		
+		readyState 속성값
+			0: 초기화이전(uninitialized) - 객체 생성만 되고 초기화 이전, 즉, open 수행전
+			1: 로딩중(loading) - 객체 생성 및 초기화, 그러나 send 수행전
+			2: 로딩완료(loaded) - send 수행 되었으나 헤더와 status 값 미도착  
+			3: 서버 처리중(interactive) - 데이터 일부만 도착
+			4: 처리완료(completed) - 데이터 전부 도착
+		*/
+	//	process();
 	}
 	
 	xhr.send(null);
@@ -25,14 +57,70 @@ function start() {
 }
 
 function process() {
-	let data = xhr.responseText;
+	// txt 파일
+	/*
+	let data = xhr.responseText; // XML 형식 이외의 문서인 경우 responseText 사용
 	console.log(data);
+	document.querySelector("#disp").innerHTML = data;
+	*/
+	
+	// csv 파일
+	// 행은 enter(줄넘김), 열은 콤마(,) 로 구분
+	/*
+	let data = xhr.responseText;
+	let rowData = data.split(String.fromCharCode(13)); // 아스키코드 13 : enter(줄넘김)
+	// alert(rowData.length);
+	let str = "";
+	for (let i = 0; i < rowData.length; i++) {
+		let colData = rowData[i].split(",");
+		for (let j = 0; j < colData.length; j++) {
+			str += colData[j] + " ";
+		}
+		str += "<br/>"
+	}
+	document.querySelector("#disp").innerHTML = str;
+	*/
+	
+	// xml 파일
+	/*
+	// let data = xhr.responseText; // xml 모양의 일반 텍스트 문서 (DOM 처리 불가)
+	let data = xhr.responseXML; // xml 객체 읽음 (DOM 처리 가능)
+	// alert(data);
+	let itemNode = data.getElementsByTagName("item");
+//	alert(itemNode.length);
+	let codeNode = data.getElementsByTagName("code");
+	let sangNode = data.getElementsByTagName("sang");
+	let str = "";
+	for (let i = 0; i < itemNode.length; i++) {
+		str += codeNode[i].childNodes[0].nodeValue + " ";
+		str += sangNode[i].firstChild.nodeValue + " ";
+		str += codeNode[i].getAttribute("price");
+		str += "<br/>"
+	}
+	document.querySelector("#disp").innerHTML = str;
+	*/
+	
+	// JSON 파일
+	let data = xhr.responseText;
+	// alert(data);
+	let parseData = JSON.parse(data); // 문자열을 JSON 객체화 -> 배열 처리 가능
+	// alert(parseData);
+	// alert(parseData.sangpum.length);
+	let str = "";
+	for (let i = 0; i < parseData.sangpum.length; i++) {
+		str += parseData.sangpum[i].code + " " + parseData.sangpum[i].sang + "<br/>";
+	}
+	document.querySelector("#disp").innerHTML = str;
 }
+
 </script>
 </head>
 <body>
 <h2>Ajax test</h2>
-<button id="btnOk">Ajax test</button>
+<button id="btnOk">Ajax test</button><br/>
+<button id="btnOk2">Read csv</button><br/>
+<button id="btnOk3">Read xml</button><br/>
+<button id="btnOk4">Read JSON</button>
 <hr/>
 <div id="disp"></div>
 </body>

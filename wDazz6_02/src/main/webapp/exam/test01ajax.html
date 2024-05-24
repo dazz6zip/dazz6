@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+	let sel = "";
+	document.querySelector("#전체").onclick = () => {
+		sel = "IS NOT NULL";
+		start();
+		
+	}
+	document.querySelector("#남").onclick = () => {
+		sel = "='남'";
+		start();
+	}
+	document.querySelector("#여").onclick = () => {
+		sel = "='여'";
+		start();
+	}
+	
+	let xhr;
+	function start() {
+		xhr = new XMLHttpRequest();
+		xhr.open('get', 'test01ajax.jsp', true);
+		
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200){
+					process();
+				}
+			}
+		}
+		xhr.send(null);
+	}
+	function process() {
+		let data = xhr.responseText;
+		let parseData = JSON.parse(data);
+		
+		let str = "<table border='1'>";
+		str += "<tr><th>사번</th><th>이름</th><th>직급</th><th>입사년</th></tr>"
+		
+		for (let i = 0; i < parseData.jikwon.length; i++) {
+			str += "<tr>";
+			str += "<td>" + parseData.jikwon[i].no + "</td>";
+			str += "<td>" + parseData.jikwon[i].name + "</td>";
+			str += "<td>" + parseData.jikwon[i].jik + "</td>";
+			str += "<td>" + parseData.jikwon[i].ibsa + "</td>";
+			str += "</tr>";
+		}
+		
+		str += "</table>";
+		document.getElementById("show").innerHTML = str;
+	}
+}
+</script>
+</head>
+<body>
+<h3>직원 정보</h3>
+<input type="radio" name="rd" id="전체">전체&nbsp;
+<input type="radio" name="rd" id="남">남&nbsp;
+<input type="radio" name="rd" id="여">여
+<hr/>
+<div id="show"></div>
+</body>
+</html>
