@@ -5,25 +5,23 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 window.onload = () => {
-	let sel = "";
 	document.querySelector("#전체").onclick = () => {
-		sel = "IS NOT NULL";
-		start();
-		
+		start('all');
 	}
 	document.querySelector("#남").onclick = () => {
-		sel = "='남'";
-		start();
+		start('ma');
 	}
 	document.querySelector("#여").onclick = () => {
-		sel = "='여'";
-		start();
+		start('fma');
 	}
-	
+}
+	let sv;
 	let xhr;
-	function start() {
+	function start(sv) {
+		document.getElementById("hidden").setAttribute("value", sv);
 		xhr = new XMLHttpRequest();
-		xhr.open('get', 'test01ajax.jsp', true);
+		furl = 'test01ajax.jsp?hidden=' + sv;
+		xhr.open('get', furl, true);
 		
 		xhr.onreadystatechange = function(){
 			if (xhr.readyState === 4) {
@@ -34,6 +32,7 @@ window.onload = () => {
 		}
 		xhr.send(null);
 	}
+	
 	function process() {
 		let data = xhr.responseText;
 		let parseData = JSON.parse(data);
@@ -53,14 +52,16 @@ window.onload = () => {
 		str += "</table>";
 		document.getElementById("show").innerHTML = str;
 	}
-}
 </script>
 </head>
 <body>
 <h3>직원 정보</h3>
-<input type="radio" name="rd" id="전체">전체&nbsp;
-<input type="radio" name="rd" id="남">남&nbsp;
-<input type="radio" name="rd" id="여">여
+<form id="frm">
+<input type="radio" name="rd" class="rd" id="전체" value="all" checked="checked">전체&nbsp;
+<input type="radio" name="rd" class="rd" id="남" value="ma">남&nbsp;
+<input type="radio" name="rd" class="rd" id="여" value="fma">여
+<input type="hidden" name="hidden" id="hidden" value="all">
+</form>
 <hr/>
 <div id="show"></div>
 </body>

@@ -4,32 +4,25 @@
 <%@page import="java.sql.Connection"%>
 <%@page language="java" contentType="text/plain; charset=UTF-8" pageEncoding="UTF-8"%>
 
-{"jikwon":
+{"gogek":
 [
 
 <%
-
 Connection conn = null;
 PreparedStatement pstmt = null;
 ResultSet rs = null;
 
-String value = request.getParameter("hidden");
-String sql = "SELECT jikwon_no AS no, jikwon_name AS name, jikwon_jik AS jik, YEAR(jikwon_ibsail) AS ibsa FROM jikwon";
-String ft = "";
-if (value.equals("ma")) {
-    sql += " WHERE jikwon_gen = '남'";
-} else if (value.equals("fma")) {
-    sql += " WHERE jikwon_gen = '여'";
-} else {
-    sql += " ";
-}
+request.setCharacterEncoding("UTF-8");
+String gname = request.getParameter("name");
+String gno = request.getParameter("no");
 
 try {
 	Class.forName("org.mariadb.jdbc.Driver");
 	String url = "jdbc:mariadb://localhost:3306/test";
 	conn = DriverManager.getConnection(url, "root", "123");
-	pstmt = conn.prepareStatement(sql);
-	pstmt.setString(1, ft);
+	pstmt = conn.prepareStatement("SELECT gogek_name AS name, gogek_tel AS tel, CASE SUBSTR(gogek_jumin, 8, 1)WHEN 1 THEN '남' WHEN 2 THEN '여' END AS gen FROM jikwon INNER JOIN gogek ON jikwon_no = gogek_damsano WHERE jikwon_no = ? AND jikwon_name = ?");
+	pstmt.setString(1, gno);
+	pstmt.setString(2, gname);
 	rs = pstmt.executeQuery();
 
 	String result = "";
@@ -39,10 +32,9 @@ try {
 			result += ",";
 		}
 		result += "{";
-		result += "\"no\":\"" + rs.getString("no") + "\",";
 		result += "\"name\":\"" + rs.getString("name") + "\",";
-		result += "\"jik\":\"" + rs.getString("jik") + "\",";
-		result += "\"ibsa\":\"" + rs.getString("ibsa") + "\"";
+		result += "\"tel\":\"" + rs.getString("tel") + "\",";
+		result += "\"gen\":\"" + rs.getString("gen") + "\"";
 		result += "}";
 	}
 

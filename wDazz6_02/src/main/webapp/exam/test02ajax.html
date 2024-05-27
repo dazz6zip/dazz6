@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#submit").onclick = () => {
+		start();
+	}
+}
+	let xhr;
+	function start() {
+		
+		let no = frm.no.value;
+		let names = frm.name.value;
+		
+		xhr = new XMLHttpRequest();
+		xhr.open('post', 'test02ajax.jsp', true);
+		
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200){
+					process();
+				}
+			}
+		}
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send('name=' + names + '&no=' + no);
+	}
+	
+	function process() {
+		let data = xhr.responseText;
+		let parseData = JSON.parse(data);
+		
+		let color = "";
+		let str = "<table border='1'>";
+		str += "<tr><th>이름</th><th>연락처</th><th>성별</th></tr>"
+		
+		for (let i = 0; i < parseData.gogek.length; i++) {
+			str += "<tr>";
+				if (parseData.gogek[i].gen === '남') {
+					color = 'style="background-color: yellow"'
+				} else {
+					color = 'style="background-color: blue"'
+				}
+			str += `<td ${color}>${parseData.gogek[i].name}</td>`;
+			str += "<td>" + parseData.gogek[i].tel + "</td>";
+			str += "<td>" + parseData.gogek[i].gen + "</td>";
+			str += "</tr>";
+		}
+		
+		str += "</table>";
+		document.getElementById("show").innerHTML = str;
+	}
+	
+	
+</script>
+</head>
+<body>
+<h2>직원정보 입력</h2>
+<form name="frm">
+사번 : <input type="text" name="no" value="1"><br/>
+이름 : <input type="text" name="name" value="홍길동"><br/>
+<input type='button' id='submit' value='관리고객 출력'>
+
+<hr/>
+<div id="show"></div>
+</form>
+</body>
+</html>
