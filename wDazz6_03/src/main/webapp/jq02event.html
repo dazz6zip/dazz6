@@ -32,6 +32,7 @@ $(document).ready(function(){
 	
 	//$('a').click(function(e) { // onclick
 	$('a').on('click', function(e) { // 위 구문과 결과 동일 : on('이벤트종류', ...)
+		// on으로 이벤트 지정할 때에는 여러 개의 이벤트 지정 가능 (ex. click, mouseover...)
 		e.preventDefault();
 		$('#txtData').val('a 태그로 다른 작업');
 	});

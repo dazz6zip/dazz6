@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>check</title>
+<link rel="stylesheet" href="css/jq03.css" type="text/css"></link>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="js/jq03.js"></script>
+</head>
+<body>
+<h2>입력 자료 양식</h2>
+<form id="signFrm">
+<label for="userID">ID 입력 : </label>
+<input type="text" name="userID" id="userID" placeholder="두 글자 이상" value="ko12"></input><br/>
+<span class="msg" id="id_err">ID 입력 오류</span>
+<br/>
+<label for="age">나이 입력 : </label>
+<input type="text" name="age" id="age"></input><br/>
+<!-- age는 type을 number로 지정하여 숫자만 입력받게 할 수 있고, 최대값도 지정할 수 있음 -->
+<!-- required="required" 필수로 채우게 하는 옵션-->
+<span class="msg" id="age_err1">나이 입력 오류</span>
+<span class="msg" id="age_err2">나이는 정수만 허용 (15 ~ 100)</span>
+<br/>
+<label for="pwd1">비밀번호 입력 : </label>
+<input type="password" name="pwd1" id="pwd1"></input><br/>
+<span class="msg" id="pwd_err1">비밀번호 입력 오류</span>
+<br/>
+<label for="pwd2">비밀번호 재입력 : </label>
+<input type="password" name="pwd2" id="pwd2"></input><br/>
+<span class="msg" id="pwd_err2">비밀번호 불일치</span>
+<br/>
+<!-- <button id="btnSend">전송</button> -->
+<input type="button" id="btnSend" value="전송">
+</form>
+</body>
+</html>
