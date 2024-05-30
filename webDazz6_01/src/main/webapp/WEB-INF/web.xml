@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>webDazz6_01</display-name>
+  <welcome-file-list>
+    <welcome-file>main.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+  </welcome-file-list>
+  
+  <!-- servlet 생성 후 등록 (어노테이션 사용 안 할 경우) -->
+  <!-- 
+  <servlet>
+  	<servlet-name>abc</servlet-name>
+  	<servlet-class>pack.HelloServlet</servlet-class> // 물리적인 파일명
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>abc</servlet-name> // url-pattern 에서 요청이 들어오면 abc를 찾아서 위로 올라가는 것
+  	<url-pattern>/ServletEx01</url-pattern>
+  	<url-pattern>/good.kor</url-pattern> // 논리적인 파일명
+  	<url-pattern>/dajeong</url-pattern>
+  </servlet-mapping>
+   -->
+</web-app>

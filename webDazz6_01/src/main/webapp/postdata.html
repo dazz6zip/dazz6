@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>postdata</title>
+</head>
+<body>
+<h2>post 요청</h2>
+<form action="post.do" method="post">
+이름 : <input type="text" name="name" value="한국인"><br/>
+주소 1 : <input type="text" name="addr" value="서울시"><br/>
+주소 2 : <input type="text" name="addr" value="서대문구"><br/><br/>
+좋아하는 스포츠는?<br/>
+<input type="checkbox" name="sports" value="축구">축구&nbsp;&nbsp;
+<input type="checkbox" name="sports" value="야구" checked="checked">야구&nbsp;&nbsp;
+<input type="checkbox" name="sports" value="농구">농구<br/>
+<br/>
+자신있는 언어는?<br/>
+<input type="radio" name="lan" value="자바" checked="checked">자바&nbsp;&nbsp;
+<input type="radio" name="lan" value="자바스크립트">자바스크립트&nbsp;&nbsp;
+<input type="radio" name="lan" value="파이썬">파이썬<br/>
+<br/>
+교통수단은?<br/>
+<select name="tr">
+<option>전철</option>
+<option>버스</option>
+<option>도보</option>
+</select>
+<input type="hidden" name="edu" value="에이콘">
+<br/><br/>
+<input type="submit" value="자료 전송">
+</form>
+</body>
+</html>
