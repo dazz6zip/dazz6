@@ -20,4 +20,10 @@
   	<url-pattern>/dajeong</url-pattern>
   </servlet-mapping>
    -->
+   
+  <!-- 프로젝트 전체 적용 유효시간
+   <session-config>
+   	<session-timeout>60</session-timeout>
+   </session-config>
+   -->
 </web-app>

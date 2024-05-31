@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnOk").onclick = () => {
+		frm.submit();
+	}
+}
+</script>
+</head>
+<body>
+<table>
+	<tr>
+		<td>
+			<img src="images/image02.png" width="100%" title="02">
+		</td>
+		<td>
+			<pre>
+이름 : 시나모롤
+데뷔 연도 : 2001년 (23주년)
+생일 : 3월 6일
+성격 : 얌전하고 매우 상냥함
+취미 : 카페 테라스에서 낮잠
+특기 : 큰 귀를 파닥거려서 하늘 날기
+좋아하는 음식 : 시나몬롤
+			</pre>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<form action="ServletEx08Cart" name="frm" method="post">
+				<input type="hidden" name="name" value="시나모롤">
+				<input type="hidden" name="price" value="20010306">
+				<input type="button" id="btnOk" value="장바구니">
+				<input type="button" value="홈" onclick="history.back()">
+				<!-- history.back() : 이전 페이지로 -->
+			</form>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

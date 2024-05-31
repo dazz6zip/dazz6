@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnOk").onclick = () => {
+		frm.submit();
+	}
+}
+</script>
+</head>
+<body>
+<table>
+	<tr>
+		<td>
+			<img src="images/image01.png" width="100%" title="01">
+		</td>
+		<td>
+			<pre>
+이름 : 푸린
+데뷔 연도 : 1996년 (28주년)
+생일 : 4월 16일
+성격 : 느긋한 마이페이스
+취미 : 신발 모으기
+특기 : 낮잠, 푸딩 체조
+좋아하는 음식 : 푸딩, 우유
+			</pre>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<form action="ServletEx08Cart" name="frm" method="post">
+				<input type="hidden" name="name" value="폼폼푸린">
+				<input type="hidden" name="price" value="19960416">
+				<input type="button" id="btnOk" value="장바구니">
+				<input type="button" value="홈" onclick="history.back()">
+				<!-- history.back() : 이전 페이지로 -->
+			</form>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
