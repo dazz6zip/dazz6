@@ -10,6 +10,13 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
+ 	<servlet>
+ 		<servlet-name>InitServlet</servlet-name>
+ 		<servlet-class>pack.InitServlet</servlet-class>
+ 		<load-on-startup>1</load-on-startup>
+ 		<!-- load-on-startup 1 : 다른 서블릿보다 먼저 생성 -->
+	</servlet>
+  
   <!-- 에러 처리 우선 순위
   1순위) 각 페이지마다의 isErrorPage 처리
   
