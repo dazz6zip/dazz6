@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jsp16insert(html)</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnInsert").onclick = func;
+}
+
+function func() {
+//	alert("a");
+	
+	// 입력 자료 검사
+	if(frm.sang.value === "") {
+		// 상품명 비어 있을 경우 상품명에 커서 옮겨 주고 return
+		alert("상품명 입력");
+		frm.sang.focus();
+		return;
+	}
+	// 수량 단가 동일 방법... (생략)
+	
+	// 입력 자료 완료 후
+	frm.submit();
+}
+</script>
+</head>
+<body>
+<h2>상품 추가</h2>
+<form action="jsp16insert.jsp" method="post" name="frm">
+품명 : <input type="text" name="sang"><br/>
+수량 : <input type="text" name="su"><br/>
+단가 : <input type="text" name="dan"><br/><br/>
+<input type="button" id="btnInsert" value="상품 등록">
+</form>
+</body>
+</html>

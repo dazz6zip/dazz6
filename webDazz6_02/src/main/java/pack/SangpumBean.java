@@ -1,7 +1,8 @@
 package pack;
 
-// DB 레코드 처리를 위한 DTO class
-public class SangpumDTO {
+// 폼빈 class
+// SangpumDTO와 내용은 같으나 용도가 다르므로 별도의 파일로 구분함
+public class SangpumBean {
 	private String code, sang, su, dan;
 
 	public String getCode() {

@@ -1,7 +1,6 @@
 <%@page import="pack.SangpumDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 // Connection conn = null; // 기존 방법
 %>
@@ -23,8 +22,7 @@
 	</tr>
 	<%
 	ArrayList<SangpumDTO> list = dbc.getDataAll();
-	// for (SangpumDTO s : list) {
-	list.forEach((s) -> {
+	for (SangpumDTO s : list) {
 	%>
 	<tr>
 		<td><%= s.getCode() %></td>
@@ -33,7 +31,7 @@
 		<td><%= s.getDan() %></td>
 	</tr>
 	<%
-	});
+	};
 	%>
 </table>
 </body>
