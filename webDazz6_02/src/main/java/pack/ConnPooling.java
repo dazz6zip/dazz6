@@ -75,13 +75,13 @@ public class ConnPooling {
 			// 신상 번호 구하기
 			pstmt = conn.prepareStatement("SELECT MAX(code) AS max FROM sangdata");
 			rs = pstmt.executeQuery();
-//			int maxCode = 0;
-//			if (rs.next()) {
-//				maxCode = rs.getInt("max");
-//			}
-//			maxCode++;
-			rs.next();
-			int maxCode = rs.getInt(1) + 1;
+			int maxCode = 0;
+			if (rs.next()) {
+				maxCode = rs.getInt("max");
+			}
+			maxCode++;
+//			rs.next();
+//			int maxCode = rs.getInt(1) + 1;
 
 			// 추가 작업
 			pstmt = conn.prepareStatement("INSERT INTO sangdata(code, sang, su, dan) VALUES (?, ?, ?, ?)");
@@ -110,6 +110,99 @@ public class ConnPooling {
 				System.out.println("insertData() - finally ERROR : " + e2.getMessage());
 			}
 		}
+		
+		return b;
+	}
+	
+	public SangpumDTO updateData(String code) {
+		SangpumDTO dto = null;
+		/* 클래식
+		try {
+			String sql = "SELECT * FROM sangdata WHERE code = ?";
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				dto = new SangpumDTO();
+				dto.setCode(rs.getString("code"));
+				dto.setSang(rs.getString("sang"));
+				dto.setSu(rs.getString("su"));
+				dto.setDan(rs.getString("dan"));
+			}
+		} catch (Exception e) {
+			System.out.println("updateData() ERROR : " + e.getMessage());
+		} finally {
+			try {
+				if (rs != null) {rs.close();}
+				if (pstmt != null) {pstmt.close();}
+				if (conn != null) {conn.close();}
+			} catch (Exception e2) {
+				System.out.println("updateData() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		*/
+		
+		String sql = "SELECT * FROM sangdata WHERE code = ?";
+		try(
+			Connection conn = ds.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		) {
+			pstmt.setString(1, code);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				dto = new SangpumDTO();
+				dto.setCode(rs.getString("code"));
+				dto.setSang(rs.getString("sang"));
+				dto.setSu(rs.getString("su"));
+				dto.setDan(rs.getString("dan"));
+			}
+		} catch (Exception e) {
+			System.out.println("updateData() ERROR : " + e.getMessage());
+		}
+		return dto;
+	}
+	
+	public boolean updateDataOk(SangpumBean bean) {
+		boolean b = false;
+		
+		String sql = "UPDATE sangdata SET sang = ?, su = ?, dan = ? WHERE code = ?";
+		try(
+			Connection conn = ds.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		) {
+			pstmt.setString(1, bean.getSang());
+			pstmt.setString(2, bean.getSu());
+			pstmt.setString(3, bean.getDan());
+			pstmt.setString(4, bean.getCode());
+			
+			if (pstmt.executeUpdate() > 0) {
+				b = true; // 업데이트 작업에 성공하면 boolean 변수에 true 치환
+			}
+		} catch (Exception e) {
+			System.out.println("updateDataOk() ERROR : " + e.getMessage());
+		}		
+		return b;
+	}
+	
+	public boolean deleteData(String code) {
+		boolean b = false;
+		
+		String sql = "DELETE FROM sangdata WHERE code = ?";
+		try(
+			Connection conn = ds.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		) {
+			pstmt.setString(1, code);
+			
+			if (pstmt.executeUpdate() > 0) {
+				b = true; // 업데이트 작업에 성공하면 boolean 변수에 true 치환
+			}
+		} catch (Exception e) {
+			System.out.println("deleteData() ERROR : " + e.getMessage());
+		}		
 		
 		return b;
 	}

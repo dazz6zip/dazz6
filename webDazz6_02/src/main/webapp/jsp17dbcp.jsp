@@ -14,10 +14,18 @@ b{
 </style>
 <script type="text/javascript">
 function funcUp() {
-	alert("u");
+	let code = prompt("수정할 코드 입력", "");
+	if (code !== "" && code !== null) {
+		location.href = "jsp17up.jsp?code=" + code;
+	}
 }
 function funcDel() {
-	alert("d");
+	let code = prompt("삭제할 데이터 코드 입력", "");
+	if (code !== "" && code !== null) {
+		if (confirm("삭제하시겠습니까?")) {
+		location.href = "jsp17del.jsp?code=" + code;
+		}
+	}
 }
 </script>
 </head>
