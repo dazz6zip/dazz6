@@ -16,6 +16,18 @@ int start, end;
 <meta charset="UTF-8">
 <title>게시판</title>
 <link rel="stylesheet" type="text/css" href="../css/board.css">
+<style type="text/css">
+.menubar {
+	border-radius: 20px; 
+	padding: 3px;
+	font-size: 90%;
+	color: white;
+}
+
+.contents {
+	text-align: center;
+}
+</style>
 <script type="text/javascript">
 window.onload = () => {
 	document.querySelector("#btnSearch").onclick = () => {
@@ -39,8 +51,12 @@ window.onload = () => {
 			<a href="#" onclick="window.open('admin.jsp', '', 'width=300, height=150, top=200, left=300')">관리자용</a>&nbsp;
 			<br/><br/>
 			<table style="width: 100%">
-				<tr style="background-color: silver;">
-					<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+				<tr style="background-color: #0489B1;">
+					<th class="menubar">번호</th>
+					<th class="menubar">제목</th>
+					<th class="menubar">작성자</th>
+					<th class="menubar">작성일</th>
+					<th class="menubar">조회수</th>
 				</tr>
 				<%
 				try {
@@ -66,15 +82,22 @@ window.onload = () => {
 				
 				for (int i = 0; i < list.size(); i++) {
 					dto = (BoardDTO)list.get(i); // list의 i번째를 취하여 BoardDTO type으로 casting (명시적, 생략 가능)
+					
+					// 댓글 들여쓰기 준비
+					int nst = dto.getNested();
+					String tab = "";
+					for (int k = 0; k < nst; k++) {
+						tab += "&emsp;";
+					}
 				%>
 				<tr>
-					<td><%= dto.getNum() %></td>
+					<td class="contents"><%= dto.getNum() %></td>
 					<td>
-						<a href="boardcontent.jsp?num=<%= dto.getNum() %>&page=<%= spage %>"><%= dto.getTitle() %></a>
+					<%= tab %><a href="boardcontent.jsp?num=<%= dto.getNum() %>&page=<%= spage %>"><%= dto.getTitle() %></a>
 					</td>
-					<td><%= dto.getName() %></td>
-					<td><%= dto.getBdate() %></td>
-					<td><%= dto.getReadcnt() %></td>
+					<td class="contents"><%= dto.getName() %></td>
+					<td class="contents"><%= dto.getBdate() %></td>
+					<td class="contents"><%= dto.getReadcnt() %></td>
 				</tr>
 				<%
 				}
