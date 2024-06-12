@@ -77,10 +77,10 @@ public class BoardMgr {
 					rs.close();
 				}
 				if (pstmt != null) {
-					rs.close();
+					pstmt.close();
 				}
 				if (conn != null) {
-					rs.close();
+					conn.close();
 				}
 			} catch (Exception e2) {
 				System.out.println("getDataAll() - finally ERROR : " + e2.getMessage());

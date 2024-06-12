@@ -43,10 +43,8 @@ window.onload = () => {
 					<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
 				</tr>
 				<%
-				
 				try {
 					spage = Integer.parseInt(request.getParameter("page"));
-
 				} catch(Exception e) {
 					spage = 1;
 				}
@@ -94,7 +92,6 @@ window.onload = () => {
 								out.print("<a href='boardlist.jsp?page=" + i + "'>" + i + "</a>&emsp;");								
 							}
 						}
-
 					%>
 					<br/><br/>
 					<form action="boardlist.jsp" name="frm" method="get">
