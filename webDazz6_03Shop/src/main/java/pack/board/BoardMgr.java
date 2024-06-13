@@ -166,7 +166,7 @@ public class BoardMgr {
 			rs = pstmt.executeQuery();
 			rs.next();
 			recTot = rs.getInt(1);
-			System.out.println("전체 레코드 수 : " + recTot);
+//			System.out.println("전체 레코드 수 : " + recTot);
 		} catch (Exception e) {
 			System.out.println("totalList() ERROR : " + e.getMessage());
 		} finally {

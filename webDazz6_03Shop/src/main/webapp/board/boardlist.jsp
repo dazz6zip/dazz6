@@ -45,7 +45,7 @@ window.onload = () => {
 <table>
 	<tr>
 		<td>
-			<a href="../index.html">메인</a>&emsp;
+			<a href="../guest/guest_index.jsp">메인</a>&emsp;
 			<a href="boardlist.jsp?page=1">최근 목록</a>&emsp;
 			<a href="boardwrite.jsp">새 글 작성</a>&emsp;
 			<a href="#" onclick="window.open('admin.jsp', '', 'width=300, height=150, top=200, left=300')">관리자용</a>&nbsp;
