@@ -159,4 +159,90 @@ public class ProductMgr {
 		}
 		return dto;
 	}
+
+	// 상품 정보를 수정 후 등록하기 위한 메소드 (INSERT)
+	public boolean updateProduct(HttpServletRequest request) {
+		boolean b = false;
+		
+		try {
+			// 업로드할 이미지 경로 : upload 폴더 (절대 경로)
+			String uploadDir = "C:/work/JAVA/JAVA-02/webDazz6_03Shop/src/main/webapp/upload";
+			MultipartRequest multi = new MultipartRequest(request, uploadDir, (5 * 1024 * 1024), "UTF-8", new DefaultFileRenamePolicy());
+			
+			conn = ds.getConnection();
+
+			if (multi.getFilesystemName("image") == null) { // 상품 등록시 이미지 선택 안 함
+				String sql = "UPDATE shop_product SET name = ?, price = ?, detail = ?, stock = ? WHERE no = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, multi.getParameter("name"));
+				pstmt.setString(2, multi.getParameter("price"));
+				pstmt.setString(3, multi.getParameter("detail"));
+				pstmt.setString(4, multi.getParameter("stock"));
+				pstmt.setString(5, multi.getParameter("no"));
+			} else { // 상품 등록시 이미지 선택함
+				String sql = "UPDATE shop_product SET name = ?, price = ?, detail = ?, stock = ?, image = ? WHERE no = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, multi.getParameter("name"));
+				pstmt.setString(2, multi.getParameter("price"));
+				pstmt.setString(3, multi.getParameter("detail"));
+				pstmt.setString(4, multi.getParameter("stock"));
+				pstmt.setString(5, multi.getFilesystemName("image"));				
+				pstmt.setString(6, multi.getParameter("no"));
+			}
+			if (pstmt.executeUpdate() > 0) {
+				b = true;
+			}
+		} catch (Exception e) {
+			System.out.println("updateProduct() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("updateProduct() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		
+		return b;
+	}
+	
+	// 상품을 삭제하기 위한 메소드 (DELETE)
+	public boolean deleteProduct(String no) {
+		boolean b = false;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "DELETE FROM shop_product WHERE no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			if (pstmt.executeUpdate() > 0) {
+				b = true;
+			}
+		} catch (Exception e) {
+			System.out.println("deleteProduct() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("deleteProduct() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		
+		return b;
+	}
 }
