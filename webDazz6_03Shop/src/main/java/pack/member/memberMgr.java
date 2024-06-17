@@ -217,4 +217,121 @@ public class memberMgr {
 		}
 		return bean;
 	}
+
+	// 회원 정보를 수정하는 메소드 (UPDATE)
+	public boolean memberUpdate(MemberBean memberBean, String id) {
+		boolean b = false;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "UPDATE member SET passwd = ?, name = ?, email = ?, phone = ?, zipcode = ?, address = ?, job = ? WHERE id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberBean.getPasswd());
+			pstmt.setString(2, memberBean.getName());
+			pstmt.setString(3, memberBean.getEmail());
+			pstmt.setString(4, memberBean.getPhone());
+			pstmt.setString(5, memberBean.getZipcode());
+			pstmt.setString(6, memberBean.getAddress());
+			pstmt.setString(7, memberBean.getJob());
+			pstmt.setString(8, id);
+			if (pstmt.executeUpdate() > 0) { // UPDATE 성공
+				b = true;
+			}
+		} catch (Exception e) {
+			System.out.println("memberUpdate() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("memberUpdate() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		
+		return b;
+	}
+	
+	// 관리자 로그인용 메소드
+	public boolean adminLoginCheck(String adminid, String adminpasswd) {
+		boolean b = false;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "SELECT * FROM admin WHERE admin_id = ? AND admin_passwd = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, adminid);
+			pstmt.setString(2, adminpasswd);
+			rs = pstmt.executeQuery();
+			
+			b = rs.next();
+			// 읽은 값이 있으면 true, 없으면 false
+
+		} catch (Exception e) {
+			System.out.println("adminLoginCheck() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("adminLoginCheck() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		
+		return b;
+	}
+
+	// 관리자의 회원관리를 위해 전체 회원 자료 읽는 메소드
+	public ArrayList<MemberBean> getMemberAll() {
+		// 여기서 ArrayList 타입은 DTO가 좋음
+		ArrayList<MemberBean> list = new ArrayList<MemberBean>();
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "SELECT * FROM member ORDER BY id ASC";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MemberBean dto = new MemberBean();
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setPasswd(rs.getString("passwd"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			System.out.println("getMemberAll() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("getMemberAll() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		
+		return list;
+	}
 }

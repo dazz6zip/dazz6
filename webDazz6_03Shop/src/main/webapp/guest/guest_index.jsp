@@ -23,14 +23,14 @@ if (memid != null) {
 	<tr style="text-align: center;">
 		<td>
 			<img src="../images/pic2.gif"><br/>
-			<%= memid %> 님 방문을 환영합니다.
+			<b><%= memid %> 님</b> 방문을 환영합니다.
 		</td>
 	</tr>
 	<%
 } else {
 	%>
 	<tr>
-		<td style="font-size: 24px; background-image: url(../images/pic.jpg); background-size: 100%;">
+		<td style="font-size: 24px; background-image: url(../images/pic.jpg); background-size: 100%; background-repeat: no-repeat;">
 			<br/><br/><br/><br/><br/>고객님 반갑습니다.<br/>
 			로그인 후 이용해 주세요.
 		</td>

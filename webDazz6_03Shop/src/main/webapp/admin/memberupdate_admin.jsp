@@ -21,7 +21,7 @@ MemberBean bean = memberMgr.getMember(id);
 <script type="text/javascript">
 window.onload = function(){
 	document.getElementById("btnUpdateOkAdmin").onclick=memberUpdateAdmin;
-	document.getElementById("btnUpdateCancelAdmin").onclick=memberUpdateCancelAdmin;
+	document.getElementById("btnUpdateCancelAdmin").onclick=memberUpdateCancleAdmin;
 }
 </script>
 </head>

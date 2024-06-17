@@ -1,15 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="memberMgr" class="pack.member.memberMgr" />
 
 <%
+request.setCharacterEncoding("utf-8");
+
 String adminid = request.getParameter("adminid");
 String adminpasswd = request.getParameter("adminpasswd");
 
 boolean b = memberMgr.adminLoginCheck(adminid, adminpasswd);
 
-if(b){
-	session.setAttribute("adminKey", adminid);  //관리자 세션 설정
+if(b){ // 관리자 로그인 성공
+	session.setAttribute("adminOk", adminid);
+	//관리자 세션 설정
 	response.sendRedirect("admin_index.jsp");
 }else{
 %>

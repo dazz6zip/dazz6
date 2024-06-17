@@ -19,8 +19,8 @@
 <%@ include file="admin_top.jsp" %>
 </div>
 
-<table style="width: 90%">
-  <tr style="background-color: cyan">
+<table style="width: 100%;">
+  <tr style="background-color: gray; color: white;">
   	<th>아이디</th><th>회원명</th><th>이메일</th><th>전화</th><th>수정</th>
   </tr>
   <%
