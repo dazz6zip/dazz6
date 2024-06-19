@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="pack.order.OrderBean"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.Hashtable"%>
@@ -6,9 +7,10 @@
 <jsp:useBean id="orderMgr" class="pack.order.OrderMgr"></jsp:useBean>
 <jsp:useBean id="productMgr" class="pack.product.ProductMgr"></jsp:useBean>
 <%
-Hashtable hCart = cartMgr.getCartList();
+// Hashtable<String, OrderBean> hCart = (Hashtable<String, OrderBean>)cartMgr.getCartList();
+// Enumeration<String> enu = hCart.keys();
 
-Enumeration enu = hCart.keys();
+Hashtable<String, OrderBean> hCart = (Hashtable<String, OrderBean>)cartMgr.getCartList();
 if (hCart.isEmpty()) {
 	%>
 	<script>
@@ -17,8 +19,15 @@ if (hCart.isEmpty()) {
 	</script>	
 	<%
 } else {
-	while (enu.hasMoreElements()) {
+/*	while (enu.hasMoreElements()) {
 		OrderBean orderBean = (OrderBean)hCart.get(enu.nextElement());
+		orderMgr.insertOrder(orderBean); // 주문 정보 DB 저장
+		productMgr.reduceProduct(orderBean); // 주문 처리 후 재고량 계산
+		cartMgr.deleteCart(orderBean); 
+	}*/
+	
+	for (Map.Entry<String, OrderBean> entry : hCart.entrySet()) {
+		OrderBean orderBean = entry.getValue();
 		orderMgr.insertOrder(orderBean); // 주문 정보 DB 저장
 		productMgr.reduceProduct(orderBean); // 주문 처리 후 재고량 계산
 		cartMgr.deleteCart(orderBean);

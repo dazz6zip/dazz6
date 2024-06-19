@@ -14,6 +14,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import pack.member.ZipcodeDTO;
+import pack.order.OrderBean;
 
 public class ProductMgr {
 	private Connection conn;
@@ -244,5 +245,33 @@ public class ProductMgr {
 		}
 		
 		return b;
+	}
+	
+	// 상품 주문시 재고량 계산을 위한 메소드 (UPDATE)
+	public void reduceProduct(OrderBean bean) {
+		try {
+			conn = ds.getConnection();
+			String sql = "UPDATE shop_product SET stock = (stock - ?) WHERE no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bean.getQuantity());
+			pstmt.setString(2, bean.getProduct_no()); // shop_order의 product_no은 shop_product의 no
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("reduceProduct() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("reduceProduct() - finally ERROR : " + e2.getMessage());
+			}
+		}
 	}
 }

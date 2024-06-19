@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="pack.product.ProductDto"%>
 <%@page import="pack.order.OrderBean"%>
 <%@page import="java.util.Enumeration"%>
@@ -29,7 +30,9 @@
 	</tr>
 	<%
 	int totalPrice = 0;
-	Hashtable hCart = cartMgr.getCartList();
+//	Hashtable hCart = cartMgr.getCartList();
+	Hashtable<String, OrderBean> hCart = (Hashtable<String, OrderBean>)cartMgr.getCartList();
+	
 	if (hCart.isEmpty()) {
 		%>
 		<tr>
@@ -37,14 +40,25 @@
 		</tr>
 		<%
 	} else{
-		Enumeration enu = hCart.keys();  // Map 타입의 컬렉션 읽어서 반복처리
+	/*	Enumeration enu = hCart.keys();  // Map 타입의 컬렉션 읽어서 반복처리
 		while(enu.hasMoreElements()){
 			OrderBean orderbean = (OrderBean)hCart.get(enu.nextElement());
 			ProductDto product = productMgr.getProduct(orderbean.getProduct_no());
 			int price = Integer.parseInt(product.getPrice());
 			int quantity = Integer.parseInt(orderbean.getQuantity());
 			int subTotal = price * quantity;  //  소계
-			totalPrice += subTotal;  //  총계
+			totalPrice += subTotal;  //  총계 */
+			
+		// Map.Entry를 이용하여 Map에 저장된 모든 key-value(쌍)를 각각의 key-value를 갖고 있는 하나의 객체로 얻을 수 있다.
+		// getKey()와 getValue()
+		for (Map.Entry<String, OrderBean> entry : hCart.entrySet()) {
+			OrderBean orderBean = entry.getValue();
+			ProductDto product = productMgr.getProduct(orderBean.getProduct_no());
+			int price = Integer.parseInt(product.getPrice());
+			int quantity = Integer.parseInt(orderBean.getQuantity());
+			int subTotal = price * quantity;
+			totalPrice += subTotal;
+			
 	%>
 	<form action="cartproc.jsp" method="get">
 		<tr>
@@ -54,8 +68,8 @@
 				<input type="text" name="quantity" style="text-align: center;" size="5px" value="<%=quantity %>">
 			</td>
 			<td>
-				<input style="background-color: #ffbbbb; border-style: none;" type="button" value="수정" onclick="javascript:cartUpdate(this.form)">
-				<input style="background-color: #ffbbbb; border-style: none;" type="button" value="삭제" onclick="javascript:cartDelete(this.form)">
+				<input style="background-color: #ffbbcc; border-style: none;" type="button" value="수정" onclick="javascript:cartUpdate(this.form)">
+				<input style="background-color: #ffbbcc; border-style: none;" type="button" value="삭제" onclick="javascript:cartDelete(this.form)">
 				<input type="hidden" name="flag">
 				<input type="hidden" name="product_no" value="<%= product.getNo() %>">
 			</td>
@@ -69,7 +83,7 @@
 	%>
 		<tr>
 			<td colspan="3">
-				<b>총 결제 금액 : <%=totalPrice %>won</b>
+				<b>총 결제 금액 : <%=totalPrice %>원</b>
 			</td>
 			<td colspan="2">
 				<a href="orderproc.jsp" style="color: #ffbbcc; background-color: gray; padding: 5px;"><b>주문하기</b></a>
