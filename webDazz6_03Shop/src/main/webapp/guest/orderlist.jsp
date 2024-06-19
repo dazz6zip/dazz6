@@ -50,29 +50,29 @@
 				<td>
 				<%
 				switch (ord.getState()) {
-				case "1" : {
-					out.println("접수 완료"); 
-					break;
-				}
-				case "2" : {
-					out.println("입금 확인"); 
-					break;
-				}
-				case "3" : {
-					out.println("배송 준비"); 
-					break;
-				}
-				case "4" : {
-					out.println("배송 중"); 
-					break;
-				}
-				case "5" : {
-					out.println("처리 완료"); 
-					break;
-				}
-				default : {
-					out.println("접수 확인 중");
-				}
+					case "1" : {
+						out.println("접수 완료"); 
+						break;
+					}
+					case "2" : {
+						out.println("입금 확인"); 
+						break;
+					}
+					case "3" : {
+						out.println("배송 준비"); 
+						break;
+					}
+					case "4" : {
+						out.println("배송 중"); 
+						break;
+					}
+					case "5" : {
+						out.println("처리 완료"); 
+						break;
+					}
+					default : {
+						out.println("접수 확인 중");
+					}
 				}
 				%>
 				</td>

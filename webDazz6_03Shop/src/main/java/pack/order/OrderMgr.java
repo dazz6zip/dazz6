@@ -97,5 +97,84 @@ public class OrderMgr {
 			}
 		}
 	}
-
+	
+	public ArrayList<OrderBean> getOrderAll() {
+		ArrayList<OrderBean> list = new ArrayList<OrderBean>();
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "SELECT * FROM shop_order ORDER BY no DESC";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				OrderBean bean = new OrderBean();
+				bean.setNo(rs.getString("no"));
+				bean.setProduct_no(rs.getString("product_no"));
+				bean.setQuantity(rs.getString("quantity"));
+				bean.setSdate(rs.getString("sdate"));
+				bean.setState(rs.getString("state"));
+				bean.setId(rs.getString("id"));
+				list.add(bean);
+			}
+		} catch (Exception e) {
+			System.out.println("getOrderAll() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("getOrderAll() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		
+		return list;
+	}
+	
+	public OrderBean getOrderDetail(String no) {
+		OrderBean bean = null;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "SELECT * FROM shop_order WHERE no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				bean = new OrderBean();
+				bean.setId(rs.getString("id"));
+				bean.setNo(rs.getString("no"));
+				bean.setProduct_no(rs.getString("product_no"));
+				bean.setQuantity(rs.getString("quantity"));
+				bean.setSdate(rs.getString("sdate"));
+				bean.setState(rs.getString("state"));
+			}
+		} catch (Exception e) {
+			System.out.println("getOrderDetail() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("getOrderDetail() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		
+		return bean;
+	}
 }

@@ -14,7 +14,7 @@
 <script src="../js/script.js"></script>
 </head>
 <body>
-<h2>** 관리자 - 전체 회원관리 **</h2>
+<h2>전체 회원 관리 (관리자)</h2>
 <div style="text-align: center;">
 <%@ include file="admin_top.jsp" %>
 </div>
