@@ -39,7 +39,6 @@ try {
 		</jikwon>
 <%
 	}
-
 } catch (Exception e) {
 	System.out.println("ERROR : " + e);
 } finally {

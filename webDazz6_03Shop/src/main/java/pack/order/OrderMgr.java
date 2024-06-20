@@ -177,4 +177,67 @@ public class OrderMgr {
 		
 		return bean;
 	}
+	
+	public boolean updateOrder(String no, String state) {
+		boolean b = false;
+		try {
+			conn = ds.getConnection();
+			String sql = "UPDATE shop_order SET state = ? WHERE no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, state);
+			pstmt.setString(2, no);
+			if(pstmt.executeUpdate() > 0) {
+				b = true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("updateOrder() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("updateOrder() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		return b;
+	}
+	
+	public boolean deleteOrder(String no) {
+		boolean b = false;
+		try {
+			conn = ds.getConnection();
+			String sql = "DELETE FROM shop_order WHERE no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			if(pstmt.executeUpdate() > 0) {
+				b = true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("deleteOrder() ERROR : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				System.out.println("deleteOrder() - finally ERROR : " + e2.getMessage());
+			}
+		}
+		return b;
+	}
 }

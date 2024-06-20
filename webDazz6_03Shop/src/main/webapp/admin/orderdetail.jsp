@@ -55,7 +55,6 @@ ProductDto product = productMgr.getProduct(order.getProduct_no());
 			</select>
 			<script type="text/javascript">
 				document.detailFrm.state.value = <%= order.getState() %>;
-				
 			</script>
 		</td>
 	</tr>
