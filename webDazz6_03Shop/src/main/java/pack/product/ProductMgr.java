@@ -90,7 +90,7 @@ public class ProductMgr {
 			pstmt.setString(4, multi.getParameter("stock"));
 			
 			if (multi.getFilesystemName("image") == null) { // 상품 등록시 이미지 선택 안 함
-				pstmt.setString(5, multi.getParameter("ready.gif"));
+				pstmt.setString(5, "ready.gif");
 			} else { // 상품 등록시 이미지 선택함
 				pstmt.setString(5, multi.getFilesystemName("image"));				
 			}
