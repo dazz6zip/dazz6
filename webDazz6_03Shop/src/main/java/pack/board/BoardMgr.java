@@ -16,7 +16,7 @@ public class BoardMgr {
 	private DataSource ds;
 
 	private int recTot; // 전체 레코드 수
-	private int pList = 10; // 페이지당 출력할 레코드 수
+	private int pList = 5; // 페이지당 출력할 레코드 수
 	private int pageSu; // 전체 페이지 수
 
 	public BoardMgr() {
