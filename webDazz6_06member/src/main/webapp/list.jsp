@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fu" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="pd" class="pack.business.ProcessDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
 <body>
 <h2>회원 정보 (MyBatis)</h2>
 <a href="ins.jsp">회원 추가</a>
-<table border="1">
+<table border="1" style="text-align: center;">
 	<tr>
 		<th>id</th><th>name</th><th>passwd</th><th>date</th>
 	</tr>
@@ -27,10 +27,10 @@
 	
 	<c:forEach var="m" items="<%= list %>">
 		<tr>
-			<td>${m.id}</td>
-			<td>${m.name}</td>
+			<td><a href="del.jsp?id=${m.id}">${m.id}</a></td>
+			<td><a href="up.jsp?id=${m.name}">${m.name}</td>
 			<td>${m.passwd}</td>
-			<td>${m.reg_date}</td>
+			<td>${fn:substring(m.reg_date, 0, 10)}</td>
 		</tr>
 	</c:forEach>
 	<tr>
