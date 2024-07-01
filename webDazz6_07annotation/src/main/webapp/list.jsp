@@ -23,7 +23,7 @@
 		<tr>
 			<td colspan="4">회원 정보 없음</td>
 		</tr>
-	</c:if>
+	</c:if> 
 	 
 	<c:forEach var="m" items="<%= list %>">
 		<tr>

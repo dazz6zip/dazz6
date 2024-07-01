@@ -15,7 +15,8 @@ public class ProcessDAO implements Processinter {
 		List<DataDto> list = null;
 
 		try {
-			list = ss.selectList("selectDataAll");
+			SqlMapperInter inter = ss.getMapper(SqlMapperInter.class);
+			list = inter.selectDataAll();
 		} catch (Exception e) {
 			System.out.println("selectDataAll() ERROR : " + e.getMessage());
 		} finally {
@@ -28,15 +29,13 @@ public class ProcessDAO implements Processinter {
 
 	@Override
 	public DataDto selectPart(String id) {
-//		System.out.println(id);
 		SqlSession ss = factory.openSession();
 		DataDto dto = null;
 		try {
-			dto = ss.selectOne("selectPart", id);
-			ss.commit();
+			SqlMapperInter inter = ss.getMapper(SqlMapperInter.class);
+			dto = inter.selectDataPart(id);
 		} catch (Exception e) {
 			System.out.println("selectPart() ERROR : " + e.getMessage());
-			ss.rollback();
 		} finally {
 			if (ss != null) {
 				ss.close();
@@ -51,7 +50,8 @@ public class ProcessDAO implements Processinter {
 
 		SqlSession ss = factory.openSession();
 		try {
-			if(ss.insert("insertData", form) > 0) {
+			SqlMapperInter inter = ss.getMapper(SqlMapperInter.class);
+			if(inter.insertData(form) > 0) {
 				b = true;
 			}
 			ss.commit();
@@ -73,11 +73,12 @@ public class ProcessDAO implements Processinter {
 		
 		SqlSession ss = factory.openSession();
 		try {
-			DataDto dto = selectPart(form.getId());
+			SqlMapperInter inter = ss.getMapper(SqlMapperInter.class);
+			DataDto dto = inter.selectDataPart(form.getId());
 			// 비밀번호 비교 후 수정 여부 판단
 			if(dto.getPasswd().equals(form.getPasswd())) {
 				// 수정 처리
-				if(ss.update("updateData", form) > 0) {
+				if(inter.updateData(form) > 0) {
 					b = true;
 					ss.commit();
 				}
@@ -100,7 +101,8 @@ public class ProcessDAO implements Processinter {
 
 		SqlSession ss = factory.openSession();
 		try {
-			int cou = ss.delete("deleteData", id);
+			SqlMapperInter inter = ss.getMapper(SqlMapperInter.class);
+			int cou = inter.deleteData(id);
 			if(cou > 0) {
 				b = true;
 			}

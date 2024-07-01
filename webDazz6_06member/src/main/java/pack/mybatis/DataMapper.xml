@@ -10,12 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
 
  <!-- 재사용 구문이 있다면 별도 작성 후 호출 -->
- <sql id="my1">id, name, passwd, reg_date</sql>
- <sql id="my2">FROM memberteb id = #{id}</sql>
+ <sql id="my1">id,name,passwd,reg_date</sql>
+ <sql id="my2">FROM memberteb WHERE id=#{id}</sql>
  
- <select id="selectPart" parameterType="string" resultType="dto" statementType="PREPARED"> <!--  statementType : PREPARED (dafalut) -->
-	SELECT <include refid="my1"></include>
-	<include refid="my2"></include>
+ <select id="selectPart" parameterType="string" resultType="dto" statementType="PREPARED"> 
+	SELECT
+	<include refid="my1" />
+	<include refid="my2" />
  </select>
   
  <insert id="insertData" parameterType="fbean">
@@ -23,10 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </insert>
  
  <update id="updateData" parameterType="fbean">
-	UPDATE memberteb SET name=#{name} WHERE id = #{id}
+	UPDATE memberteb SET name = #{name} WHERE id = #{id}
  </update>
  
- <delete id="deleteData" parameterType="int">
+ <delete id="deleteData" parameterType="String">
 	DELETE FROM memberteb WHERE id = #{id}
  </delete>
 </mapper>
