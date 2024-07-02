@@ -23,9 +23,7 @@ public class UpdateController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		if (result > 0) { // INSERT 성공
 			mav.setViewName("list.m2"); 
-			// 서버에서 서블릿을 부를 때는 클라이언트를 통해 호출해야 하므로 redirect 사용
-			// 서버 -> 서블릿 (forward) 불가
-		} else { // INSERT 실패
+		} else { // UPDATE 실패
 			mav.setViewName("fail.html");
 		}
 		
