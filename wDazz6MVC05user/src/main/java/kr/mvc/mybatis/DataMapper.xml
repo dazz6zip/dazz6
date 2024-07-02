@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+
+ <select id="selectDataAll" resultType="dto">
+	SELECT * FROM userinfo
+ </select>
+ 
+ <select id="findUser" resultType="dto" parameterType="String">
+	SELECT * FROM userinfo WHERE userid = #{userid}
+ </select>
+ 
+ <insert id="insertData" parameterType="form">
+ 	INSERT INTO userinfo VALUES (#{userid}, #{password}, #{name}, #{email})
+ </insert>
+ 
+ <update id="updateData" parameterType="form">
+ 	UPDATE userinfo SET password = #{password}, name = #{name}, email = #{email} WHERE userid = #{userid}
+ </update>
+ 
+ <delete id="deleteData" parameterType="String">
+ 	DELETE FROM userinfo WHERE userid = #{userid}
+ </delete>
+
+</mapper>

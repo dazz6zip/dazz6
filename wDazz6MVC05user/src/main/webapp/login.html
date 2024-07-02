@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login.html</title>
+<script type="text/javascript">
+window.onload = () => {
+	let btnLogin = document.querySelector("#btnLogin");
+	btnLogin.addEventListener("click", loginFunc, false);
+	
+	document.querySelector("#btnInsert").addEventListener("click", insertFunc, false);
+}
+
+function loginFunc() {
+//	alert("a");
+	if(frm.userid.value === "") {
+		alert("아이디를 입력해 주세요.");
+		frm.userid.focus();
+		return false;
+	}
+	
+	if(frm.password.value === "") {
+		alert("비밀번호를 입력해 주세요.");
+		frm.password.focus();
+		return false;
+	}
+	
+	frm.action = "login.m2";
+	frm.submit();
+}
+
+function insertFunc() {
+//	alert("b");
+	frm.action = "insert.jsp";
+	frm.submit();
+}
+</script>
+</head>
+<body>
+<h2>사용자 관리 로그인(MVC)</h2>
+<form name="frm" method="post">
+	아이디 : <input type="text" name="userid"><br/>
+	비밀번호 : <input type="text" name="password"><br/>
+	<input type="button" value="로그인" id="btnLogin">
+	<input type="button" value="회원가입" id="btnInsert">
+</form>
+</body>
+</html>
